@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-int main(){
+int main(void){
     int n;
     cin>>n;
     cout<<n<<endl;
