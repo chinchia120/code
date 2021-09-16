@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 int main(void){
     int n;
@@ -13,18 +14,15 @@ int main(void){
             cin>>a;
             vec.push_back(a);
         }
+        sort(vec.begin(),vec.end());
         for(int i=0;i<n;i++){
-            for(int j=i+1;j<n;j++){
-                if(vec[i]>vec[j]){
-                    int tmp=vec[i];
-                    vec[i]=vec[j];
-                    vec[j]=tmp;
-                }
+            if(i!=n-1){
+                cout<<vec[i]<<" ";
+            }else{
+                cout<<vec[i]<<endl;
             }
+            
         }
-        for(int i=0;i<n;i++){
-            cout<<vec[i]<<" ";
-        }
-        cout<<endl;
     }
+    return 0;
 }
