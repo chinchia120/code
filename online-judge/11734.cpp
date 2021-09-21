@@ -2,9 +2,9 @@
 #include <string>
 using namespace std;
 int main(void){
-    string sn;
-    while(getline(cin,sn)){
-        int n=stoi(sn);
+    string _n;
+    while(getline(cin,_n)){
+        int n=stoi(_n);
         for(int i=0;i<n;i++){
             string str1,str2;
             getline(cin,str1);
