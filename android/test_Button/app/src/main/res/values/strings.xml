@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">test_Button</string>
+    <string name="btn_enlarge">放大</string>
+    <string name="btn_shrink">縮小</string>
+</resources>

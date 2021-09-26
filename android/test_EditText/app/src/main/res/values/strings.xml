@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">test_EditText</string>
+    <string name="edt_entername">請輸入姓名</string>
+    <string name="btn_ok">確定</string>
+</resources>
