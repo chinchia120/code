@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">practice_1</string>
+    <string name="btn_ok">確定</string>
+    <string name="btn_enlarge">放大</string>
+    <string name="btn_shrink">縮小</string>
+    <string name="btn_red">紅色</string>
+    <string name="btn_blue">藍色</string>
+    <string name="btn_bold">粗體</string>
+    <string name="btn_italic">斜體</string>
+    <string name="btn_clear">清除</string>
+    <string name="btn_reset">還原</string>
+    <string name="edt_entername">請輸入姓名</string>
+</resources>

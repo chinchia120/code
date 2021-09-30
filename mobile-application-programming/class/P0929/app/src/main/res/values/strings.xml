@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">P0929</string>
+    <string name="btn_enlarge">放大</string>
+    <string name="btn_ok">確定</string>
+</resources>
