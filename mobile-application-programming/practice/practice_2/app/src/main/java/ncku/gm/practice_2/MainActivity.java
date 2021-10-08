@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
     TextView txv_2,txv_10,txv_16;
     @Override
@@ -28,16 +30,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void delete(View v){
-
+        String str=txv_2.getText().toString();
+        if(str.length()==0){
+            txv_2.setText("");
+        }else{
+            str=str.substring(0,str.length()-1);
+            txv_2.setText(str);
+        }
     }
 
     public void reset(View v){
         txv_2.setText("");
+        txv_10.setText("十進位 = ");
+        txv_16.setText("十六進位 = ");
     }
 
     public void calculate(View v){
-        int num=Integer.parseInt(txv_2.toString());
-
-        txv_10.setText(num);
+        String str=txv_2.getText().toString();
+        int sum_10=Integer.valueOf(str,2);
+        String str_16=Integer.toHexString(sum_10);
+        txv_10.setText("十進位 = " + sum_10);
+        txv_16.setText("十六進位 = " + str_16);
     }
 }
