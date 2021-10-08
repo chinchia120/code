@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">P1006</string>
+    <string name="btn_ok">確定</string>
+    <string name="txv_first_name">姓:</string>
+    <string name="txv_name">名:</string>
+    <string name="txv_phone_number">電話:</string>
+</resources>
