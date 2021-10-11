@@ -3,6 +3,7 @@ package ncku.gm.practice_2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -47,9 +48,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void calculate(View v){
         String str=txv_2.getText().toString();
-        int sum_10=Integer.valueOf(str,2);
-        String str_16=Integer.toHexString(sum_10);
-        txv_10.setText("十進位 = " + sum_10);
-        txv_16.setText("十六進位 = " + str_16);
+        if(TextUtils.isEmpty(str)){
+            txv_2.setText("");
+            txv_10.setText("十進位 = ");
+            txv_16.setText("十六進位 = ");
+        }else{
+            int sum_10=Integer.valueOf(str,2);
+            String str_16=Integer.toHexString(sum_10);
+            txv_10.setText("十進位 = " + sum_10);
+            txv_16.setText("十六進位 = " + str_16);
+        }
     }
 }
