@@ -21,7 +21,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:checked="true"
-            android:text="漢堡" />
+            android:text="漢堡"
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/imv1"
@@ -35,7 +36,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="炸雞" />
+            android:text="炸雞"
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/imv2"
@@ -57,7 +59,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="紅茶" />
+            android:text="紅茶"
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/imv3"
@@ -71,7 +74,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="咖啡" />
+            android:text="咖啡"
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/imv4"
@@ -100,14 +104,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:checked="true"
-                android:text="半糖" />
+                android:text="半糖"
+                android:textSize="16sp" />
 
             <RadioButton
                 android:id="@+id/rbtn_nosugar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="無糖" />
+                android:text="無糖"
+                android:textSize="16sp" />
         </RadioGroup>
 
         <RadioGroup
@@ -123,14 +129,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:checked="true"
-                android:text="少冰" />
+                android:text="少冰"
+                android:textSize="16sp" />
 
             <RadioButton
                 android:id="@+id/rbtn_noice"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="去冰" />
+                android:text="去冰"
+                android:textSize="16sp" />
         </RadioGroup>
     </LinearLayout>
 
@@ -144,7 +152,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="薯條" />
+            android:text="薯條"
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/imv5"
@@ -158,7 +167,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="聖代" />
+            android:text="聖代"
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/imv6"
@@ -173,7 +183,8 @@
         android:id="@+id/btn_ok"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="點餐" />
+        android:text="點餐"
+        android:textSize="16sp" />
 
     <ScrollView
         android:layout_width="match_parent"

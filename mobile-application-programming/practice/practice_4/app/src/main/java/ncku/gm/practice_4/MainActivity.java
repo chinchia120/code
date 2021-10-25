@@ -13,6 +13,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
     TextView txv;
     RadioButton rb_h,rb_f,rb_rt,rb_c,rb_hs,rb_ns,rb_li,rb_ni;
     CheckBox cb_f,cb_i;
@@ -125,23 +126,35 @@ public class MainActivity extends AppCompatActivity {
             sum+=20;
             imv3.setVisibility(View.VISIBLE);
             imv4.setVisibility(View.GONE);
-        }else{
+
+            if(rb_hs.isChecked()){
+                str+="(半糖、";
+            }else{
+                str+="(無糖、";
+            }
+
+            if(rb_li.isChecked()){
+                str+="少冰)，";
+            }else{
+                str+="去冰)，";
+            }
+        }else if(rb_c.isChecked()){
             str+="搭配咖啡";
             sum+=30;
             imv3.setVisibility(View.GONE);
             imv4.setVisibility(View.VISIBLE);
-        }
 
-        if(rb_hs.isChecked()){
-            str+="(半糖、";
-        }else{
-            str+="(無糖、";
-        }
+            if(rb_hs.isChecked()){
+                str+="(半糖、";
+            }else{
+                str+="(無糖、";
+            }
 
-        if(rb_li.isChecked()){
-            str+="少冰)，";
-        }else{
-            str+="去冰)，";
+            if(rb_li.isChecked()){
+                str+="少冰)，";
+            }else{
+                str+="去冰)，";
+            }
         }
 
         if(cb_f.isChecked()){
