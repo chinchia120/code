@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">P1027</string>
+
+    <string-array name="theater">
+        <item>台北影城</item>
+        <item>台中影城</item>
+        <item>台南影城</item>
+    </string-array>
+
+    <string-array name="food">
+        <item>漢堡</item>
+        <item>薯條</item>
+        <item>可樂</item>
+        <item>玉米濃湯</item>
+    </string-array>
+
+</resources>
