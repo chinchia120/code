@@ -167,13 +167,14 @@
         <ListView
             android:id="@+id/lsv_stop_station"
             android:layout_width="0dp"
-            android:layout_height="300dp"
+            android:layout_height="200dp"
             android:layout_weight="5" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/txv_msg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:textAlignment="center"
         android:textSize="34sp" />
 </LinearLayout>
