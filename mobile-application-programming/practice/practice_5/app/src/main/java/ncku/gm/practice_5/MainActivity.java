@@ -172,11 +172,6 @@ public class MainActivity extends AppCompatActivity
         }else{
             for(int i=Math.min(tmp_go,tmp_stop);i<Math.max(tmp_go,tmp_stop);i++){
                 cnt += ticket_free[i];
-                if(i==3){
-                    cnt += 5;
-                }else if(i==4){
-                    cnt -= 5;
-                }
             }
         }
         String str_seat = spn_seat.getSelectedItem().toString();
