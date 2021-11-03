@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">P1103</string>
+
+    <string-array name="question">
+        <item>什麼門關不上</item>
+        <item>什麼東西沒人愛吃</item>
+        <item>什麼瓜不能吃</item>
+        <item>什麼不切不斷</item>
+        <item>什麼鼠最愛乾淨</item>
+        <item>偷什麼不犯法</item>
+        <item>日期</item>
+        <item>時間</item>
+    </string-array>
+</resources>
