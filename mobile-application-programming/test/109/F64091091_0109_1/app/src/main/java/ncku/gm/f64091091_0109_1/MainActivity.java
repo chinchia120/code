@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -110,15 +111,19 @@ public class MainActivity extends AppCompatActivity
             }
             if(cnt_china>0){
                 ((TextView)findViewById(R.id.txv_cnt_china)).setText(cnt_china+"");
+                ((ImageView)findViewById(R.id.imv_china)).setVisibility(View.VISIBLE);
             }
             if(cnt_usa>0){
                 ((TextView)findViewById(R.id.txv_cnt_usa)).setText(cnt_usa+"");
+                ((ImageView)findViewById(R.id.imv_usa)).setVisibility(View.VISIBLE);
             }
             if(cnt_phi>0){
                 ((TextView)findViewById(R.id.txv_cnt_phi)).setText(cnt_phi+"");
+                ((ImageView)findViewById(R.id.imv_phi)).setVisibility(View.VISIBLE);
             }
             if(cnt_korea>0){
                 ((TextView)findViewById(R.id.txv_cnt_korea)).setText(cnt_korea+"");
+                ((ImageView)findViewById(R.id.imv_korea)).setVisibility(View.VISIBLE);
             }
             if(cnt_china>2 || cnt_korea>2 || cnt_phi>2 || cnt_usa>2 ){
                 vb.vibrate(3000);

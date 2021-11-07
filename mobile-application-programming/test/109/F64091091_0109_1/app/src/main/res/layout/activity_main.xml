@@ -243,6 +243,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:scaleType="fitEnd"
+            android:visibility="invisible"
             app:srcCompat="@android:drawable/alert_dark_frame" />
 
         <TextView
@@ -264,6 +265,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:scaleType="fitEnd"
+            android:visibility="invisible"
             app:srcCompat="@android:drawable/alert_dark_frame" />
 
         <TextView
@@ -279,6 +281,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:scaleType="fitEnd"
+            android:visibility="invisible"
             app:srcCompat="@android:drawable/alert_dark_frame" />
 
         <TextView
@@ -300,6 +303,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:scaleType="fitEnd"
+            android:visibility="invisible"
             app:srcCompat="@android:drawable/alert_dark_frame" />
 
         <TextView
