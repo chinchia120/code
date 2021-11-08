@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">F64091091_0108_2</string>
+    <string-array name="buy">
+        <item>現場付款</item>
+        <item>線上刷卡</item>
+    </string-array>
 </resources>
