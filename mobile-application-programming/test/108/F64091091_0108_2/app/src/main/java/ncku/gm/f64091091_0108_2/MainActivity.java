@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity
 
         ((ListView)findViewById(R.id.lsv_buy)).setOnItemClickListener(this);
 
+        tos=Toast.makeText(this,"不可大於6或小於0",Toast.LENGTH_LONG);
+
         String[] str_hat = {"0","1","2","3","4","5","6"};
         ArrayAdapter<String> ad_hat = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,str_hat);
         ((Spinner)findViewById(R.id.spn_hat)).setAdapter(ad_hat);
@@ -52,18 +54,18 @@ public class MainActivity extends AppCompatActivity
             }
         }else if(view.getId()==R.id.btn_minus1){
             out--;
+            check();
             if(flag==1){
                 out++;
             }
         }else if(view.getId()==R.id.btn_plus1){
             out++;
+            check();
             if(flag==1){
                 out--;
             }
         }
-        ((TextView)findViewById(R.id.txv_show_in)).setText(in+"");
-        ((TextView)findViewById(R.id.txv_show_out)).setText(out+"");
-
+        show();
         ArrayList<String> str_hat = new ArrayList<>();
         str_hat.add("0");
         str_hat.add("1");
@@ -82,7 +84,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onLongClick(View view) {
         in--;
-        ((TextView)findViewById(R.id.txv_show_in)).setText(in+"");
+        check();
+        if(flag==1){
+            in++;
+        }
+        show();
         return true;
     }
 
@@ -118,10 +124,14 @@ public class MainActivity extends AppCompatActivity
 
     public void check(){
         flag=0;
-        if((out+in)>6 || (out+in)<0){
-            tos = Toast.makeText(this,"不可大於6或小於0",Toast.LENGTH_LONG);
+        if((in+out>6) || in>6 || out>6 || in+out<0 || in<0 ||out<0){
             tos.show();
             flag=1;
         }
+    }
+
+    public void show(){
+        ((TextView)findViewById(R.id.txv_show_in)).setText(in+"");
+        ((TextView)findViewById(R.id.txv_show_out)).setText(out+"");
     }
 }

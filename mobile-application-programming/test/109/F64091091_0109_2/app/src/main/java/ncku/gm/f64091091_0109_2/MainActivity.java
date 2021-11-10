@@ -147,6 +147,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         str_sis = i + "";
+        if(ticket_bro+i>6){
+            tos.show();
+            ((Spinner)findViewById(R.id.spn_ticket_sis)).setSelection(0);
+        }
     }
 
     @Override
