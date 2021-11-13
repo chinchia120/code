@@ -124,6 +124,42 @@
             android:layout_weight="7" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="加購 : "
+            android:textSize="24sp" />
+
+        <CheckBox
+            android:id="@+id/cb_cloth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="球衣(USD$50)" />
+
+        <CheckBox
+            android:id="@+id/cb_hat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="球帽(USD$29)" />
+
+        <CheckBox
+            android:id="@+id/cb_ball"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="紀念球(USD$42)" />
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/btn_book"
         android:layout_width="match_parent"
@@ -135,5 +171,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:textSize="24sp" />
+        android:textSize="20sp" />
 </LinearLayout>
