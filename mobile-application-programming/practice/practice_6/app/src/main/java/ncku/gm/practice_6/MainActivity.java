@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     String str,str_league="國家聯盟",str_area="東區",str_team_="亞特蘭大勇士隊",str_seat="內野";
-    int check_league,check_area,sum_seat,sum_buy,check=1,check_team=1;
+    int check_league,check_area,sum_seat=84,sum_buy=0,check=1,check_team=1;
     ArrayList<String> str_team = new ArrayList<>();
 
     @Override
@@ -117,19 +117,19 @@ public class MainActivity extends AppCompatActivity
                 if(check_league==0){
                     check=1;
                 }else{
-                    check=2;
+                    check=4;
                 }
                 str_area="東區";
             }else if(i==1){
                 if(check_league==0){
-                    check=3;
+                    check=2;
                 }else{
-                    check=4;
+                    check=5;
                 }
                 str_area="中區";
             }else if(i==2){
                 if(check_league==0){
-                    check=5;
+                    check=3;
                 }else{
                     check=6;
                 }
