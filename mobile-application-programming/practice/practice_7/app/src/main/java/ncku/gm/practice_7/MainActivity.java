@@ -3,6 +3,7 @@ package ncku.gm.practice_7;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.SearchManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity
         if(i==str_res.size()-1){
             startActivityForResult(new Intent(this,MainActivity2.class),000);
         }else{
-            startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("https://www.google.com")));
+            startActivity(new Intent(Intent.ACTION_WEB_SEARCH).putExtra(SearchManager.QUERY,((ListView)findViewById(R.id.lsv_restaurant)).getItemAtPosition(i).toString()));
         }
     }
 

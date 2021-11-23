@@ -42,6 +42,7 @@ public class MainActivity3 extends AppCompatActivity
     public void onClick(View view) {
         if(view.getId()==R.id.btn_sure){
             str_phone = ((EditText)findViewById(R.id.edt_phone)).getText().toString();
+            str_res = ((Spinner)findViewById(R.id.spn_restaurant)).getSelectedItem().toString();
             AlertDialog.Builder bud = new AlertDialog.Builder(this);
             bud.setTitle("訂餐資訊");
             bud.setMessage("訂購 : "+ str_res +"\n連絡電話 : "+str_phone+"\n取餐時間 : "+str_time);
