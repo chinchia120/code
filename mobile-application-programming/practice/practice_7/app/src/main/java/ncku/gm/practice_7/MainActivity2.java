@@ -33,6 +33,5 @@ public class MainActivity2 extends AppCompatActivity
         }else if(view.getId()==R.id.btn_cancel){
             finish();
         }
-
     }
 }

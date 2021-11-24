@@ -41,9 +41,7 @@ public class MainActivity extends AppCompatActivity
         str_res.add("新增店家");
         ad_res = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,str_res);
         ((ListView)findViewById(R.id.lsv_restaurant)).setAdapter(ad_res);
-
     }
-
 
     ArrayList<String> str_res = new ArrayList<>();
     ArrayAdapter<String> ad_res;
@@ -71,10 +69,14 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onClick(View view) {
+        ArrayList<String> str = new ArrayList<>();
+        for(int i=0;i<str_res.size()-1;i++){
+            str.add(i,str_res.get(i));
+        }
         if(view.getId()==R.id.btn_book){
             Intent it = new Intent(this,MainActivity3.class);
             Bundle bdl = new Bundle();
-            bdl.putSerializable("ArrayList",(Serializable) str_res);
+            bdl.putSerializable("ArrayList",(Serializable) str);
             it.putExtra("餐廳",bdl);
             startActivityForResult(it,001);
         }else if(view.getId()==R.id.btn_reset){
@@ -87,7 +89,6 @@ public class MainActivity extends AppCompatActivity
             str_res.add("新增店家");
             ad_res.notifyDataSetChanged();
         }
-
     }
 
     @Override
@@ -105,6 +106,5 @@ public class MainActivity extends AppCompatActivity
                 Snackbar.make(findViewById(R.id.root),"取消訂單",Snackbar.LENGTH_LONG).show();
             }
         }
-
     }
 }
