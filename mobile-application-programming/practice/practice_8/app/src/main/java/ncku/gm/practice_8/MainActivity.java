@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.hardware.Sensor;
@@ -12,6 +13,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Vibrator;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     float x=(float)0.50,y=(float)0.20,x_now,y_now;
     float [] value_acc_eat = new float[3];
     int cnt_reset=0,cnt_eat=0,flag=0,flag_next=2;
+    Vibrator vb;
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
@@ -100,6 +103,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public void onClick(View view) {
         cnt_reset++;
         if(cnt_reset==3){
+            vb =(Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            vb.vibrate(1000);
             flag_next=0;
             AlertDialog.Builder bud = new AlertDialog.Builder(this);
             bud.setTitle("通關失敗");
