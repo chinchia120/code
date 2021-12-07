@@ -14,12 +14,25 @@
         android:ems="10"
         android:hint="請輸入地點"
         android:inputType="textPersonName"
+        android:onClick="onEditTextChange"
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/txv_show"
+        android:id="@+id/txv_show_now"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="20dp"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/txv_show_enter"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/txv_show_dis"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
         android:textSize="16sp" />
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"

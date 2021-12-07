@@ -13,10 +13,10 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -24,6 +24,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
@@ -56,41 +57,24 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onLocationChanged(@NonNull Location location) {
-        lat_now = location.getLatitude();
-        lon_now = location.getLongitude();
-
-        gm.animateCamera(CameraUpdateFactory.newLatLng(new LatLng(lat_now,lon_now)));
-        //gm.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat_now,lon_now),8f));
-
-        Geocoder geo = new Geocoder(this, Locale.getDefault());
-        try {
-            String str_now = " ",str_enter = " ";
-            List<Address> list_now = geo.getFromLocation(lat_now,lon_now,1);
-            List<Address> list_enter = geo.getFromLocationName(((EditText)findViewById(R.id.edt_enter_place)).getText().toString(),1);
-
-            if(list_now!=null && list_now.size()>0){
-                Address address_now = list_now.get(0);
-                for(int i=0;i<=address_now.getMaxAddressLineIndex();i++){
-                    str_now+=address_now.getAddressLine(i);
-                }
+        if(location!=null){
+            lat_now = location.getLatitude();
+            lon_now = location.getLongitude();
+            Geocoder geo = new Geocoder(this, Locale.TRADITIONAL_CHINESE);
+            try {
+                List<Address> list_now = geo.getFromLocation(lat_now,lon_now,1);
+                String str_now = list_now.get(0).getAddressLine(0);
+                ((TextView)findViewById(R.id.txv_show_now)).setText(String.format("目前位置 : %s",str_now));
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-
-            if(list_enter!=null && list_enter.size()>0){
-                Address address_enter = list_enter.get(0);
-                lat_enter = address_enter.getLatitude();
-                lon_enter = address_enter.getLongitude();
-                str_enter+=lat_enter+"\n"+lon_enter;
+            if(gm!=null){
+                gm.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat_now,lon_now),7f));
+                gm.addMarker(new MarkerOptions().position(new LatLng(lat_now,lon_now)).title("目前位置"));
             }
-            dis = getDistance(lat_now,lon_now,lat_enter,lon_enter)/1000;
-            ((TextView)findViewById(R.id.txv_show)).setText(str_now+"\n"+str_enter+"\n"+dis);
-            //String.format("距離 : %.02f m",dis)
-
-        }catch (Exception e){
-            ((TextView)findViewById(R.id.txv_show)).setText("無法辨識");
+        }else{
+            ((TextView)findViewById(R.id.txv_show_now)).setText("無法取得定位資訊");
         }
-        //gm.moveCamera(CameraUpdateFactory.zoomTo(2));
-        gm.addMarker(new MarkerOptions().position(new LatLng(lat_now,lon_now)).title("目前位置"));
-        gm.addMarker(new MarkerOptions().position(new LatLng(lat_enter,lon_enter)).title("輸入位置"));
     }
 
     @Override
@@ -103,5 +87,41 @@ public class MainActivity extends AppCompatActivity
         float[] result = new float[1];
         Location.distanceBetween(lat_now,lon_now,lat_enter,lon_enter,result);
         return result[0];
+    }
+
+    public void onEditTextChange(View view){
+        String str_direction = "";
+        Geocoder geo = new Geocoder(this, Locale.TRADITIONAL_CHINESE);
+        try {
+            String str_enter = null;
+            if(((EditText)findViewById(R.id.edt_enter_place)).getText().toString()!=null){
+                List<Address> list_enter = geo.getFromLocationName(((EditText)findViewById(R.id.edt_enter_place)).getText().toString(),1);
+                lat_enter = list_enter.get(0).getLatitude();
+                lon_enter = list_enter.get(0).getLongitude();
+                List<Address> list_enter_place = geo.getFromLocation(lat_enter,lon_enter,1);
+                str_enter = list_enter_place.get(0).getAddressLine(0);
+                dis = getDistance(lat_now,lon_now,lat_enter,lon_enter)/1000;
+                if(lon_enter>lon_now){
+                    str_direction+="東";
+                }else{
+                    str_direction+="西";
+                }
+                if(lat_enter>lat_now){
+                    str_direction+="北";
+                }else{
+                    str_direction+="南";
+                }
+            }else{
+                str_enter = "無法辨識輸入地點";
+                dis = 0f;
+            }
+            ((TextView)findViewById(R.id.txv_show_enter)).setText(String.format("輸入位置 : %s",str_enter));
+            ((TextView)findViewById(R.id.txv_show_dis)).setText(String.format("距離 : %.1f km , %s方",dis,str_direction));
+            if(gm!=null){
+                gm.addMarker(new MarkerOptions().position(new LatLng(lat_enter,lon_enter)).title("輸入位置"));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
