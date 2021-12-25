@@ -3,22 +3,34 @@ package ncku.gm.final_project;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        startActivity(new Intent(this,MainActivity_home.class));
+
+        db = openOrCreateDatabase("Test_DB", Context.MODE_PRIVATE,null);
+        db.execSQL("CREATE TABLE IF NOT EXISTS table01 (_id INTEGER PRIMARY KEY AUTOINCREMENT,name VARCHAR(32),email VARCHAR(32),password VARCHAR(32),phone VARCHAR(32))");
+        //query();
 
         ((Button)findViewById(R.id.btn_login)).setOnClickListener(this);
         ((Button)findViewById(R.id.btn_register)).setOnClickListener(this);
@@ -26,39 +38,51 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        int flag=0;
+        String email = ((EditText)findViewById(R.id.edt_enter_email)).getText().toString();
+        String password = ((EditText)findViewById(R.id.edt_enter_password)).getText().toString();
         if(view.getId()==R.id.btn_login){
-            for(int i=0;i<str_name.size();i++){
-                if(((EditText)findViewById(R.id.edt_enter_email)).getText().toString()==str_name.get(i) || ((EditText)findViewById(R.id.edt_enter_password)).getText().toString()==str_password.get(i)){
-                    flag=1;
-                    //startActivity(new Intent(this,MainActivity_home.class));
-                }
+            Cursor cus = db.rawQuery("SELECT * FROM table01",null);
+            if(cus.moveToFirst()){
+                do {
+                    if(cus.getString(2).equals(email) && cus.getString(3).equals(password)){
+                        startActivity(new Intent(this,MainActivity_home.class));
+                    }
+                }while (cus.moveToNext());
             }
-            if(flag==0){
-                Snackbar.make(findViewById(R.id.root_login),"登入失敗",Snackbar.LENGTH_LONG).show();
-            }else{
-                startActivity(new Intent(this,MainActivity_home.class));
-            }
+            Snackbar.make(findViewById(R.id.root_login),"登入失敗",Snackbar.LENGTH_LONG).show();
         }else if(view.getId()==R.id.btn_register){
-            startActivityForResult(new Intent(this,MainActivity_register.class),000);
+            startActivityForResult(new Intent(this,MainActivity_register.class),001);
         }
     }
-
-    ArrayList<String> str_name = new ArrayList<>();
-    ArrayList<String> str_email = new ArrayList<>();
-    ArrayList<String> str_password = new ArrayList<>();
-    ArrayList<String> str_phone_number = new ArrayList<>();
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode==000 && resultCode==-1){
+        if(requestCode==001 && resultCode==RESULT_OK){
             Snackbar.make(findViewById(R.id.root_login),"註冊成功",Snackbar.LENGTH_LONG).show();
-            str_name.add(str_name.size(),data.getStringExtra("name"));
-            str_email.add(str_email.size(),data.getStringExtra("email"));
-            str_password.add(str_password.size(),data.getStringExtra("password"));
-            str_phone_number.add(str_phone_number.size(),data.getStringExtra("phone_number"));
+            ContentValues cv = new ContentValues(4);
+            cv.put("name",data.getStringExtra("Name"));
+            cv.put("email",data.getStringExtra("Email"));
+            cv.put("password",data.getStringExtra("Password"));
+            cv.put("phone",data.getStringExtra("Phone"));
+            db.insert("table01",null,cv);
+            //query();
+        }
+    }
+
+    public void query(){
+        ((TextView)findViewById(R.id.textView)).setText(db.getPath()+"\n"+db.getPageSize()+" Bytes\n"+db.getMaximumSize()+" Bytes\n");
+        Cursor cus = db.rawQuery("SELECT * FROM table01",null);
+        ((TextView)findViewById(R.id.textView)).append(cus.getCount()+"\n");
+        if(cus.moveToFirst()){
+            do{
+                String name = cus.getString(1);
+                String email = cus.getString(2);
+                String password = cus.getString(3);
+                String phone = cus.getString(4);
+                ((TextView)findViewById(R.id.textView)).append(name+"\t"+email+"\t"+password+"\t"+phone+"\n");
+            }while (cus.moveToNext());
         }
     }
 }
