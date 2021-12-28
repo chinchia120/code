@@ -38,13 +38,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        String email = ((EditText)findViewById(R.id.edt_enter_email)).getText().toString();
-        String password = ((EditText)findViewById(R.id.edt_enter_password)).getText().toString();
         if(view.getId()==R.id.btn_login){
             Cursor cus = db.rawQuery("SELECT * FROM table01",null);
             if(cus.moveToFirst()){
                 do {
-                    if(cus.getString(2).equals(email) && cus.getString(3).equals(password)){
+                    if(cus.getString(2).equals(((EditText)findViewById(R.id.edt_enter_email)).getText().toString()) && cus.getString(3).equals(((EditText)findViewById(R.id.edt_enter_password)).getText().toString())){
                         startActivity(new Intent(this,MainActivity_home.class));
                     }
                 }while (cus.moveToNext());
@@ -77,11 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ((TextView)findViewById(R.id.textView)).append(cus.getCount()+"\n");
         if(cus.moveToFirst()){
             do{
-                String name = cus.getString(1);
-                String email = cus.getString(2);
-                String password = cus.getString(3);
-                String phone = cus.getString(4);
-                ((TextView)findViewById(R.id.textView)).append(name+"\t"+email+"\t"+password+"\t"+phone+"\n");
+                ((TextView)findViewById(R.id.textView)).append(cus.getString(1)+"\t"+cus.getString(2)+"\t"+cus.getString(3)+"\t"+cus.getString(4)+"\n");
             }while (cus.moveToNext());
         }
     }

@@ -33,10 +33,6 @@ public class MainActivity_register extends AppCompatActivity implements View.OnC
                 it.putExtra("Password",((EditText)findViewById(R.id.edt_enter_password_register)).getText().toString());
                 it.putExtra("Phone",((EditText)findViewById(R.id.edt_enter_phone)).getText().toString());
                 setResult(RESULT_OK,it);
-                //setResult(-1,new Intent().putExtra("name",((EditText)findViewById(R.id.edt_enter_name)).getText().toString()));
-                //setResult(-1,new Intent().putExtra("email",((EditText)findViewById(R.id.edt_enter_email_register)).getText().toString()));
-                //setResult(-1,new Intent().putExtra("password",((EditText)findViewById(R.id.edt_enter_password_register)).getText().toString()));
-                //setResult(-1,new Intent().putExtra("phone",((EditText)findViewById(R.id.edt_enter_phone)).getText().toString()));
                 finish();
             }
         }else if(view.getId()==R.id.btn_cancel_register){

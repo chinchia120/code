@@ -46,7 +46,8 @@ public class MainActivity_home extends AppCompatActivity implements LocationList
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        ((LocationManager) getSystemService(Context.LOCATION_SERVICE)).requestLocationUpdates("network", 5000, 5,this);
+        ((LocationManager) getSystemService(Context.LOCATION_SERVICE)).requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 5,this);
+        ((LocationManager) getSystemService(Context.LOCATION_SERVICE)).requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 5,this);
         ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map)).getMapAsync(this);
     }
 
