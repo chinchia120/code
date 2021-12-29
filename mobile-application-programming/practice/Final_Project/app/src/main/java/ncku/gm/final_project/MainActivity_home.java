@@ -25,6 +25,8 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -45,7 +47,10 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity_home extends AppCompatActivity implements OnMapReadyCallback , LocationListener{
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class MainActivity_home extends AppCompatActivity implements OnMapReadyCallback , LocationListener , View.OnClickListener {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainHomeBinding binding;
@@ -54,9 +59,12 @@ public class MainActivity_home extends AppCompatActivity implements OnMapReadyCa
     LatLng myplace;
     double lat;
     double lng;
-    String s1;
-    String s2;
-    String s3;
+    ArrayList<String> str_end = new ArrayList<>();
+    ArrayList<String> str_start = new ArrayList<>();
+    ArrayList<String> str_distance = new ArrayList<>();
+    ArrayList<String> str_time = new ArrayList<>();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +113,21 @@ public class MainActivity_home extends AppCompatActivity implements OnMapReadyCa
 
         SupportMapFragment smf = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         smf.getMapAsync(this);
+
+        ((Button)findViewById(R.id.btn_new_data)).setOnClickListener(this);
+        ((Button)findViewById(R.id.btn_show_data)).setOnClickListener(this);
+
+        str_end.add("成大醫院");
+        str_end.add("台南高鐵站");
+
+        str_start.add("台南火車站");
+        str_start.add("自強校區");
+
+        str_time.add("1/1 12:00");
+        str_time.add("1/3 17:20");
+
+        str_distance.add("0.9 km");
+        str_distance.add("10.4 km");
     }
 
     @Override
@@ -137,15 +160,40 @@ public class MainActivity_home extends AppCompatActivity implements OnMapReadyCa
             myplace = new LatLng(lat,lng);
 
             if (mMap != null){
-                mMap.animateCamera(CameraUpdateFactory.newLatLng(myplace));
-                mMap.addMarker(new MarkerOptions()
-                        .position(myplace)
-                        .title("目前位置"));
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat,lng),15));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat,lng),15f));
+                mMap.addMarker(new MarkerOptions().position(myplace).title("目前位置"));
             }
         }
         else {
 
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view.getId()==R.id.btn_new_data){
+            startActivityForResult(new Intent(this,MainActivity_new_data.class),002);
+        }else if(view.getId()==R.id.btn_show_data){
+            Intent it = new Intent(this,MainActivity_show_data.class);
+            Bundle bdl = new Bundle();
+            bdl.putSerializable("End",(Serializable) str_end);
+            bdl.putSerializable("Start",(Serializable) str_start);
+            bdl.putSerializable("Time",(Serializable) str_time);
+            bdl.putSerializable("Distance",(Serializable) str_distance);
+            it.putExtra("Bundle",bdl);
+            startActivity(it);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode==002 && resultCode==-1){
+            str_end.add(data.getStringExtra("End"));
+            str_start.add(data.getStringExtra("Start"));
+            str_time.add(data.getStringExtra("Time"));
+            str_distance.add(data.getStringExtra("Distance"));
         }
     }
 }

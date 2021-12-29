@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 do {
                     if(cus.getString(2).equals(((EditText)findViewById(R.id.edt_enter_email)).getText().toString()) && cus.getString(3).equals(((EditText)findViewById(R.id.edt_enter_password)).getText().toString())){
                         startActivity(new Intent(this,MainActivity_home.class));
+                        return;
                     }
                 }while (cus.moveToNext());
             }
