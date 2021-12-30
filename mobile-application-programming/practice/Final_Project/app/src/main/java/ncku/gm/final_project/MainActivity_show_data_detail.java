@@ -17,7 +17,7 @@ public class MainActivity_show_data_detail extends AppCompatActivity implements 
         setContentView(R.layout.activity_main_show_data_detail);
 
         ((TextView)findViewById(R.id.txv_show_end)).setText((String) getIntent().getBundleExtra("Bundle").getSerializable("End"));
-        ((TextView)findViewById(R.id.txv_show_start)).setText("目的地 : "+(String) getIntent().getBundleExtra("Bundle").getSerializable("Start"));
+        ((TextView)findViewById(R.id.txv_show_start)).setText("出發地 : "+(String) getIntent().getBundleExtra("Bundle").getSerializable("Start"));
         ((TextView)findViewById(R.id.txv_show_distance)).setText("距離 : "+(String) getIntent().getBundleExtra("Bundle").getSerializable("Distance"));
         ((TextView)findViewById(R.id.txv_show_time)).setText("時間 : "+(String) getIntent().getBundleExtra("Bundle").getSerializable("Time"));
 
