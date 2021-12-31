@@ -9,17 +9,23 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.service.autofill.UserData;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.io.Serializable;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     SQLiteDatabase db;
+    UserInformation userInformation = new UserInformation();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if(cus.moveToFirst()){
                 do {
                     if(cus.getString(2).equals(((EditText)findViewById(R.id.edt_enter_email)).getText().toString()) && cus.getString(3).equals(((EditText)findViewById(R.id.edt_enter_password)).getText().toString())){
+                        userInformation.setUser_name(cus.getString(1));
+                        userInformation.setUser_email(cus.getString(2));
+                        userInformation.setUser_password(cus.getString(3));
+                        userInformation.setUser_phone(cus.getString(4));
                         startActivity(new Intent(this,MainActivity_home.class));
                         return;
                     }
@@ -50,23 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             Snackbar.make(findViewById(R.id.root_login),"登入失敗",Snackbar.LENGTH_LONG).show();
         }else if(view.getId()==R.id.btn_register){
-            startActivityForResult(new Intent(this,MainActivity_register.class),001);
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode==001 && resultCode==RESULT_OK){
-            Snackbar.make(findViewById(R.id.root_login),"註冊成功",Snackbar.LENGTH_LONG).show();
-            ContentValues cv = new ContentValues(4);
-            cv.put("name",data.getStringExtra("Name"));
-            cv.put("email",data.getStringExtra("Email"));
-            cv.put("password",data.getStringExtra("Password"));
-            cv.put("phone",data.getStringExtra("Phone"));
-            db.insert("table01",null,cv);
-            //query();
+            startActivity(new Intent(this,MainActivity_register.class));
         }
     }
 

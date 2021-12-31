@@ -52,7 +52,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    android:onClick="showdata"
                     android:text="@string/data"
                     android:textColor="#000000"
                     android:textSize="24sp" />
@@ -62,10 +61,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    android:onClick="adddata"
                     android:text="@string/add"
                     android:textColor="#000000"
                     android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/btn_user_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:onClick="adddata"
+                    android:text="用戶資訊"
+                    android:textColor="#000000"
+                    android:textSize="24sp" />
+
             </LinearLayout>
 
         </LinearLayout>

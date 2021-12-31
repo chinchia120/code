@@ -17,52 +17,44 @@
             android:id="@+id/imv_back_user_data"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"
+            android:layout_weight="1"
+            android:scaleType="fitStart"
             app:srcCompat="@drawable/back" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="6"
-            android:text="@string/add"
-            android:textAlignment="center"
+            android:layout_weight="2"
+            android:text="用戶資訊"
+            android:textAlignment="textStart"
             android:textColor="#FFFFFF"
             android:textSize="34sp" />
 
-        <ImageView
-            android:id="@+id/imv_finish_new"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            app:srcCompat="@android:drawable/checkbox_on_background" />
-
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/edt_end"
+    <TextView
+        android:id="@+id/txv_show_user_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="輸入目的地"
-        android:inputType="textPersonName"
         android:textSize="24sp" />
 
-    <EditText
-        android:id="@+id/edt_start"
+    <TextView
+        android:id="@+id/txv_show_user_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="輸入上車處"
-        android:inputType="textPersonName"
         android:textSize="24sp" />
 
-    <EditText
-        android:id="@+id/edt_time"
+    <TextView
+        android:id="@+id/txv_show_user_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="選擇時間"
-        android:inputType="time"
         android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/txv_show_user_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24sp" />
+
 </LinearLayout>

@@ -19,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Final_Project">
         <activity
+            android:name=".MainActivity_user_data"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity_show_data_detail"
             android:exported="false" />
         <activity
