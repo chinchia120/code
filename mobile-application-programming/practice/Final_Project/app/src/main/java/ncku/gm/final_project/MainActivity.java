@@ -24,7 +24,7 @@ import java.io.Serializable;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    SQLiteDatabase db;
+    SQLiteDatabase db,db_location;
     UserInformation userInformation = new UserInformation();
 
     @Override
@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         db = openOrCreateDatabase("Test_DB", Context.MODE_PRIVATE,null);
         db.execSQL("CREATE TABLE IF NOT EXISTS table01 (_id INTEGER PRIMARY KEY AUTOINCREMENT,name VARCHAR(32),email VARCHAR(32),password VARCHAR(32),phone VARCHAR(32))");
         //query();
+        //show_location();
 
         ((Button)findViewById(R.id.btn_login)).setOnClickListener(this);
         ((Button)findViewById(R.id.btn_register)).setOnClickListener(this);
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void query(){
+    private void query(){
         ((TextView)findViewById(R.id.textView)).setText(db.getPath()+"\n"+db.getPageSize()+" Bytes\n"+db.getMaximumSize()+" Bytes\n");
         Cursor cus = db.rawQuery("SELECT * FROM table01",null);
         ((TextView)findViewById(R.id.textView)).append(cus.getCount()+"\n");
@@ -72,6 +73,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             do{
                 ((TextView)findViewById(R.id.textView)).append(cus.getString(1)+"\t"+cus.getString(2)+"\t"+cus.getString(3)+"\t"+cus.getString(4)+"\n");
             }while (cus.moveToNext());
+        }
+    }
+
+    private void show_location(){
+        db_location = openOrCreateDatabase("Test_DB", Context.MODE_PRIVATE,null);
+        db_location.execSQL("CREATE TABLE IF NOT EXISTS table_location (_id INTEGER PRIMARY KEY AUTOINCREMENT,place VARCHAR(32),lat DOUBLE(8),lon DOUBLE(8))");
+        Cursor cus_location = db_location.rawQuery("SELECT * FROM table_location",null);
+        if(cus_location.moveToFirst()){
+            do{
+                ((TextView)findViewById(R.id.textView)).append(cus_location.getString(1)+" "+cus_location.getDouble(2)+" "+cus_location.getDouble(3)+"\n");
+            }while (cus_location.moveToNext());
         }
     }
 }
