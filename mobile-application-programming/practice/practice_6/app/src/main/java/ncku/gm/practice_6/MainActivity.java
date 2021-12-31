@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     String str,str_league="國家聯盟",str_area="東區",str_team_="亞特蘭大勇士隊",str_seat="內野";
-    int check_league,check_area,sum_seat=84,sum_buy=0,check=1,check_team=1;
+    int check_league=0,check_area=0,sum_seat=84,sum_buy=0,check=1,check_team=1;
     ArrayList<String> str_team = new ArrayList<>();
 
     @Override
@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity
                 str_league="美國聯盟";
             }
             check_league=i;
+            check_area=0;
         }
 
         if(adapterView.getId()==R.id.spn_area){

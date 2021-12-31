@@ -2,10 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity">
 
     <EditText
         android:id="@+id/edt_enter_place"
@@ -33,6 +34,13 @@
         android:id="@+id/txv_show_dis"
         android:layout_width="match_parent"
         android:layout_height="20dp"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btn_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search"
         android:textSize="16sp" />
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
