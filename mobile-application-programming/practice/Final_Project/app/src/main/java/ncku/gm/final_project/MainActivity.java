@@ -46,6 +46,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if(view.getId()==R.id.btn_login){
+            query();
+            //show_location();
             Cursor cus = db.rawQuery("SELECT * FROM table01",null);
             if(cus.moveToFirst()){
                 do {
@@ -69,20 +71,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ((TextView)findViewById(R.id.textView)).setText(db.getPath()+"\n"+db.getPageSize()+" Bytes\n"+db.getMaximumSize()+" Bytes\n");
         Cursor cus = db.rawQuery("SELECT * FROM table01",null);
         ((TextView)findViewById(R.id.textView)).append(cus.getCount()+"\n");
+/*
+        cus.moveToFirst();
+        for(int i=0;i<cus.getCount();i++){
+            db.delete("table01","_id="+cus.getString(0),null);
+            cus.moveToNext();
+        }
+
+
+ */
+
         if(cus.moveToFirst()){
             do{
-                ((TextView)findViewById(R.id.textView)).append(cus.getString(1)+"\t"+cus.getString(2)+"\t"+cus.getString(3)+"\t"+cus.getString(4)+"\n");
+                ((TextView)findViewById(R.id.textView)).append(cus.getString(0)+"\t"+cus.getString(1)+"\t"+cus.getString(2)+"\t"+cus.getString(3)+"\t"+cus.getString(4)+"\n");
             }while (cus.moveToNext());
         }
     }
 
     private void show_location(){
+        ((TextView)findViewById(R.id.textView)).setText(db.getPath()+"\n"+db.getPageSize()+" Bytes\n"+db.getMaximumSize()+" Bytes\n");
         db_location = openOrCreateDatabase("Test_DB", Context.MODE_PRIVATE,null);
-        db_location.execSQL("CREATE TABLE IF NOT EXISTS table_location (_id INTEGER PRIMARY KEY AUTOINCREMENT,place VARCHAR(32),lat DOUBLE(8),lon DOUBLE(8))");
+        db_location.execSQL("CREATE TABLE IF NOT EXISTS table_location (_id INTEGER PRIMARY KEY AUTOINCREMENT,name VARCHAR(32),end_place VARCHAR(32),start VARCHAR(32),time VARCHAR(32))");
         Cursor cus_location = db_location.rawQuery("SELECT * FROM table_location",null);
+        ((TextView)findViewById(R.id.textView)).append(cus_location.getCount()+"\n");
         if(cus_location.moveToFirst()){
             do{
-                ((TextView)findViewById(R.id.textView)).append(cus_location.getString(1)+" "+cus_location.getDouble(2)+" "+cus_location.getDouble(3)+"\n");
+                ((TextView)findViewById(R.id.textView)).append(cus_location.getString(1)+"\t"+cus_location.getString(2)+"\t"+cus_location.getString(3)+"\t"+cus_location.getString(4)+"\n");
             }while (cus_location.moveToNext());
         }
     }

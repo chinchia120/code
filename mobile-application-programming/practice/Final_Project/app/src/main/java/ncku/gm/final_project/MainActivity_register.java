@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +20,10 @@ public class MainActivity_register extends AppCompatActivity implements View.OnC
 
     SQLiteDatabase db;
 
+    ClientThread mClientThread;
+    private Handler mInputHandler;
+    private String host = "140.116.47.94";
+    private int port = 7070;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +35,40 @@ public class MainActivity_register extends AppCompatActivity implements View.OnC
 
         ((Button)findViewById(R.id.btn_ok_register)).setOnClickListener(this);
         ((Button)findViewById(R.id.btn_cancel_register)).setOnClickListener(this);
+
+        mInputHandler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                if (msg.what == 0) {
+                    String[] tmp = msg.obj.toString().split(",");
+                    if(tmp[0].matches("user_data")){
+                        Cursor cus = db.rawQuery("SELECT * FROM table01",null);
+                        int flag=0;
+                        cus.moveToFirst();
+                        for(int i=0;i<cus.getCount();i++){
+                            if(cus.getString(1).matches(tmp[1]) && cus.getString(2).matches(tmp[2]) && cus.getString(3).matches(tmp[3]) && cus.getString(4).matches(tmp[4])){
+                                flag=1;
+                                break;
+                            }else {
+                                cus.moveToNext();
+                            }
+                        }
+                        if (flag==0){
+                            ContentValues cv = new ContentValues(4);
+                            cv.put("name",tmp[1]);
+                            cv.put("email",tmp[2]);
+                            cv.put("password",tmp[3]);
+                            cv.put("phone",tmp[4]);
+                            db.insert("table01",null,cv);
+                        }
+                        finish();
+                    }
+                }
+            }
+        };
+
+        mClientThread = new ClientThread(mInputHandler, host, port);
+        new Thread(mClientThread).start();
     }
 
     @Override
@@ -42,7 +83,20 @@ public class MainActivity_register extends AppCompatActivity implements View.OnC
                 cv.put("password",((EditText)findViewById(R.id.edt_enter_password_register)).getText().toString());
                 cv.put("phone",((EditText)findViewById(R.id.edt_enter_phone)).getText().toString());
                 db.insert("table01",null,cv);
-                finish();
+
+                Cursor cus = db.rawQuery("SELECT * FROM table01",null);
+                cus.moveToFirst();
+                for (int i=0;i<cus.getCount();i++){
+                    Message msg = new Message();
+                    msg.what = 1;
+                    msg.obj = "user_data"+","+
+                            cus.getString(1)+","+
+                            cus.getString(2)+","+
+                            cus.getString(3)+","+
+                            cus.getString(4);
+                    mClientThread.mOutputHandler.sendMessage(msg);
+                    cus.moveToNext();
+                }
             }
         }else if(view.getId()==R.id.btn_cancel_register){
             finish();

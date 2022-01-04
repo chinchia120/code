@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -53,6 +55,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class MainActivity_home extends AppCompatActivity implements OnMapReadyCallback , LocationListener , View.OnClickListener {
 
@@ -60,7 +64,7 @@ public class MainActivity_home extends AppCompatActivity implements OnMapReadyCa
     private ActivityMainHomeBinding binding;
 
     private GoogleMap mMap;
-    SQLiteDatabase db,db_location;
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +109,8 @@ public class MainActivity_home extends AppCompatActivity implements OnMapReadyCa
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        lm.requestLocationUpdates("network", 5000, 5, this);
+        lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 5, this);
+        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 5, this);
 
         SupportMapFragment smf = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         smf.getMapAsync(this);
@@ -115,10 +120,7 @@ public class MainActivity_home extends AppCompatActivity implements OnMapReadyCa
         ((Button)findViewById(R.id.btn_user_data)).setOnClickListener(this);
 
         db = openOrCreateDatabase("Test_DB", Context.MODE_PRIVATE,null);
-        db.execSQL("CREATE TABLE IF NOT EXISTS table01 (_id INTEGER PRIMARY KEY AUTOINCREMENT,name VARCHAR(32),end_place VARCHAR(32),start VARCHAR(32),distance VARCHAR(32),time VARCHAR(32))");
-
-        db_location = openOrCreateDatabase("Test_DB", Context.MODE_PRIVATE,null);
-        db_location.execSQL("CREATE TABLE IF NOT EXISTS table_location (_id INTEGER PRIMARY KEY AUTOINCREMENT,place VARCHAR(32),lat DOUBLE(8),lon DOUBLE(8))");
+        db.execSQL("CREATE TABLE IF NOT EXISTS table_location (_id INTEGER PRIMARY KEY AUTOINCREMENT,name VARCHAR(32),end_place VARCHAR(32),start VARCHAR(32),time VARCHAR(32))");
 
     }
 
@@ -140,20 +142,27 @@ public class MainActivity_home extends AppCompatActivity implements OnMapReadyCa
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        Cursor cus_location = db_location.rawQuery("SELECT * FROM table_location",null);
-        if(cus_location.moveToFirst()){
-            do{
-                mMap.addMarker(new MarkerOptions().position(new LatLng(cus_location.getDouble(2),cus_location.getDouble(3))).title("出發位置"));
-            }while (cus_location.moveToNext());
-        }
     }
 
     @Override
     public void onLocationChanged(@NonNull Location location) {
         if (location != null){
             if (mMap != null){
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()),15f));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()),7f));
+                mMap.clear();
                 mMap.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(),location.getLongitude())).title("目前位置"));
+                Cursor cus = db.rawQuery("SELECT * FROM table_location",null);
+                if(cus.moveToFirst()){
+                    do{
+                        Geocoder geo = new Geocoder(this, Locale.TRADITIONAL_CHINESE);
+                        try {
+                            List<Address> list_start = geo.getFromLocationName(cus.getString(3),1);
+                            mMap.addMarker(new MarkerOptions().position(new LatLng(list_start.get(0).getLatitude(),list_start.get(0).getLongitude())).title("出發位置"));
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }while (cus.moveToNext());
+                }
             }
         }
     }

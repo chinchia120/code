@@ -29,8 +29,9 @@ public class MainActivity_show_data extends AppCompatActivity implements Adapter
         setContentView(R.layout.activity_main_show_data);
 
         db = openOrCreateDatabase("Test_DB", Context.MODE_PRIVATE,null);
-        db.execSQL("CREATE TABLE IF NOT EXISTS table02 (_id INTEGER PRIMARY KEY AUTOINCREMENT,name VARCHAR(32),end_place VARCHAR(32),start VARCHAR(32),distance VARCHAR(32),time VARCHAR(32))");
-        Cursor cus = db.rawQuery("SELECT * FROM table02",null);
+        db.execSQL("CREATE TABLE IF NOT EXISTS table_location (_id INTEGER PRIMARY KEY AUTOINCREMENT,name VARCHAR(32),end_place VARCHAR(32),start VARCHAR(32),time VARCHAR(32))");
+
+        Cursor cus = db.rawQuery("SELECT * FROM table_location",null);
         if(cus.moveToFirst()){
             do{
                 str_end.add(cus.getString(2));
