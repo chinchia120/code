@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if(view.getId()==R.id.btn_login){
-            query();
+            //query();
             //show_location();
             Cursor cus = db.rawQuery("SELECT * FROM table01",null);
             if(cus.moveToFirst()){

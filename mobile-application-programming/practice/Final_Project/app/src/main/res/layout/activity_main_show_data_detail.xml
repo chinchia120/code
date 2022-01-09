@@ -59,6 +59,11 @@
         android:layout_height="wrap_content"
         android:textSize="24sp" />
 
+    <TextView
+        android:id="@+id/tvlefttime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -76,7 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="私訊" />
+            android:text="聊天室" />
 
         <Button
             android:id="@+id/btn_sure"
@@ -84,6 +89,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="共乘" />
+
+        <Button
+            android:id="@+id/btn_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="刪除" />
     </LinearLayout>
 
 </LinearLayout>

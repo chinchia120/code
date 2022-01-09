@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Address;
@@ -95,6 +96,7 @@ public class MainActivity_new_data extends AppCompatActivity implements View.OnC
                             cv.put("time",tmp[4]);
                             db.insert("table_location",null,cv);
                         }
+
                         finish();
                     }
                 }
@@ -142,14 +144,15 @@ public class MainActivity_new_data extends AppCompatActivity implements View.OnC
         }
     }
 
+
     @Override
     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-        ((EditText)findViewById(R.id.edt_time)).setText((i1+1)+"/"+(i2));
+        ((EditText)findViewById(R.id.edt_time)).setText(String.format("%02d/%02d",(i1+1),i2));
         new TimePickerDialog(this,this,12,00,true).show();
     }
 
     @Override
     public void onTimeSet(TimePicker timePicker, int i, int i1) {
-        ((EditText)findViewById(R.id.edt_time)).append(String.format(" %02d:%02d\n",i,i1));
+        ((EditText)findViewById(R.id.edt_time)).append(String.format(" %02d:%02d",i,i1));
     }
 }

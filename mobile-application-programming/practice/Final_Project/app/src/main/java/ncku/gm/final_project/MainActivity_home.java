@@ -55,6 +55,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -122,6 +123,7 @@ public class MainActivity_home extends AppCompatActivity implements OnMapReadyCa
         db = openOrCreateDatabase("Test_DB", Context.MODE_PRIVATE,null);
         db.execSQL("CREATE TABLE IF NOT EXISTS table_location (_id INTEGER PRIMARY KEY AUTOINCREMENT,name VARCHAR(32),end_place VARCHAR(32),start VARCHAR(32),time VARCHAR(32))");
 
+
     }
 
     @Override
@@ -164,6 +166,31 @@ public class MainActivity_home extends AppCompatActivity implements OnMapReadyCa
                     }while (cus.moveToNext());
                 }
             }
+        }
+
+        Cursor cus = db.rawQuery("SELECT * FROM table_location",null);
+        cus.moveToFirst();
+        for(int i=0;i<cus.getCount();i++){
+            Calendar calendar = Calendar.getInstance();
+
+            int nowmon = calendar.get(Calendar.MONTH)+1;
+            int nowdate = calendar.get(Calendar.DATE);
+            //計算剩下時間
+            int starttime = Integer.parseInt(cus.getString(4).substring(6,8)) * 3600
+                    + Integer.parseInt(cus.getString(4).substring(9,11)) * 60 ;
+
+            int now = calendar.get(Calendar.HOUR_OF_DAY) * 3600
+                    + calendar.get(Calendar.MINUTE) * 60
+                    + calendar.get(Calendar.SECOND);
+
+            int lefttime = Math.max(starttime - now,0);
+
+            int startmonth = Integer.parseInt(cus.getString(4).substring(0,2));
+            int startdate = Integer.parseInt(cus.getString(4).substring(3,5));
+            if (nowmon == startmonth && nowdate == startdate && lefttime == 0){
+                db.delete("table_location","_id="+cus.getString(0),null);
+            }
+            cus.moveToNext();
         }
     }
 
