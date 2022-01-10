@@ -77,8 +77,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             db.delete("table01","_id="+cus.getString(0),null);
             cus.moveToNext();
         }
-
-
  */
 
         if(cus.moveToFirst()){

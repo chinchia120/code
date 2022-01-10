@@ -61,7 +61,6 @@ public class MainActivity_register extends AppCompatActivity implements View.OnC
                             cv.put("phone",tmp[4]);
                             db.insert("table01",null,cv);
                         }
-                        finish();
                     }
                 }
             }
@@ -97,6 +96,7 @@ public class MainActivity_register extends AppCompatActivity implements View.OnC
                     mClientThread.mOutputHandler.sendMessage(msg);
                     cus.moveToNext();
                 }
+                finish();
             }
         }else if(view.getId()==R.id.btn_cancel_register){
             finish();

@@ -77,7 +77,6 @@ public class MainActivity_together extends AppCompatActivity implements Location
         gm.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
         //Snackbar.make(findViewById(R.id.root_together), locationData.getLat_start() + "\t" + locationData.getLon_start() + "\t" + locationData.getLat_end() + "\t" + locationData.getLon_end(), Snackbar.LENGTH_LONG).show();
-
     }
 
     public double getDistance(double lat_start,double lon_start,double lat_end, double lon_end){
@@ -89,7 +88,7 @@ public class MainActivity_together extends AppCompatActivity implements Location
     @Override
     public void onClick(View v) {
         if(v.getId()==R.id.btn_finsh){
-            db.delete("table_location","_id="+(getIntent().getBundleExtra("Bundle").getString("id")),null);
+            //db.delete("table_location","_id="+(getIntent().getBundleExtra("Bundle").getString("id")),null);
             startActivity(new Intent(this,MainActivity_home.class));
         }
     }

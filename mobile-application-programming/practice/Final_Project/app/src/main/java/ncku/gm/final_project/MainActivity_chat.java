@@ -2,6 +2,7 @@ package ncku.gm.final_project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.os.Handler;
@@ -59,10 +60,15 @@ public class MainActivity_chat extends AppCompatActivity implements View.OnClick
 
                         //Snackbar.make(findViewById(R.id.root_chat),"Get Message",Snackbar.LENGTH_LONG).show();
                         //處理接收到的訊息(姓名,訊息,傳給誰)
+                        /*
                         if( (tmp[1].matches(userInformation.getUser_name()) || tmp[3].matches(userInformation.getUser_name()) || (tmp[1].matches(tmp[3])))){
-                            tvmessage.append(String.format("%s : %s\n",tmp[1],tmp[2]));
+                            tvmessage.append(String.format("%s to %s : %s\n",tmp[1],tmp[3],tmp[2]));
                             chat = tvmessage.getText().toString();
                         }
+
+                         */
+                        tvmessage.append(String.format("%s : %s\n",tmp[1],tmp[2]));
+                        chat = tvmessage.getText().toString();
                     }
                 }
             }

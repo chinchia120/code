@@ -2,17 +2,21 @@ package ncku.gm.final_project;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.Menu;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -59,13 +63,26 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class MainActivity_home extends AppCompatActivity implements OnMapReadyCallback , LocationListener , View.OnClickListener {
+public class MainActivity_home extends AppCompatActivity implements OnMapReadyCallback , LocationListener , View.OnClickListener  , DialogInterface.OnClickListener{
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainHomeBinding binding;
 
     private GoogleMap mMap;
     SQLiteDatabase db;
+
+    ClientThread mClientThread;
+    private Handler mInputHandler;
+    private String host = "140.116.47.94";
+    private int port = 7070;
+
+    UserInformation userInformation = new UserInformation();
+    LocationData locationData = new LocationData();
+    /*
+    //對話框debug
+    int diaread = 0;
+     */
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,8 +140,58 @@ public class MainActivity_home extends AppCompatActivity implements OnMapReadyCa
         db = openOrCreateDatabase("Test_DB", Context.MODE_PRIVATE,null);
         db.execSQL("CREATE TABLE IF NOT EXISTS table_location (_id INTEGER PRIMARY KEY AUTOINCREMENT,name VARCHAR(32),end_place VARCHAR(32),start VARCHAR(32),time VARCHAR(32))");
 
+        mInputHandler = new Handler()
+        {
+            @Override
+            public void handleMessage(Message msg)
+            {
+                if (msg.what == 0)
+                {
+                    String[] tmp = msg.obj.toString().split(",");
+                    //收到新訊息
+                    if(tmp[0].matches("message")){
+                        if (!tmp[1].matches(userInformation.getUser_name())){
+                            Snackbar.make(findViewById(R.id.drawer_layout),"Get Message",Snackbar.LENGTH_LONG).show();
+                        }
+                    }else if(tmp[0].matches("together")){
+                        if(tmp[1].matches(userInformation.getUser_name())){
 
+                            locationData.setLat_start(Double.valueOf(tmp[2]));
+                            locationData.setLon_start(Double.valueOf(tmp[3]));
+                            locationData.setLat_end(Double.valueOf(tmp[4]));
+                            locationData.setLon_end(Double.valueOf(tmp[5]));
+                            check_together();
+                        }
+                    }else if(tmp[0].matches("delete")){
+                        Cursor cus = db.rawQuery("SELECT * FROM table_location",null);
+                        cus.moveToFirst();
+
+                        for (int i=0;i<cus.getCount();i++){
+                            if(tmp[1].matches(cus.getString(1)) && tmp[2].matches(cus.getString(2)) && tmp[3].matches(cus.getString(3)) && tmp[4].matches(cus.getString(4))){
+                                db.delete("table_location","_id="+cus.getString(0),null);
+                                break;
+                            }
+                            cus.moveToNext();
+                        }
+                    }
+                }
+            }
+        };
+
+        mClientThread = new ClientThread(mInputHandler, host, port);
+        new Thread(mClientThread).start();
     }
+
+        private void check_together(){
+            AlertDialog.Builder b = new AlertDialog.Builder(this);
+            b.setIcon(android.R.drawable.presence_away);
+            b.setMessage("有人要與您共乘");
+            b.setPositiveButton("查看",this);
+            b.setCancelable(false);
+            b.show();
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -144,6 +211,7 @@ public class MainActivity_home extends AppCompatActivity implements OnMapReadyCa
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        mMap.clear();
     }
 
     @Override
@@ -153,6 +221,7 @@ public class MainActivity_home extends AppCompatActivity implements OnMapReadyCa
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()),7f));
                 mMap.clear();
                 mMap.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(),location.getLongitude())).title("目前位置"));
+                
                 Cursor cus = db.rawQuery("SELECT * FROM table_location",null);
                 if(cus.moveToFirst()){
                     do{
@@ -202,6 +271,13 @@ public class MainActivity_home extends AppCompatActivity implements OnMapReadyCa
             startActivity(new Intent(this,MainActivity_show_data.class));
         }else if(view.getId()==R.id.btn_user_data){
             startActivity(new Intent(this,MainActivity_user_data.class));
+        }
+    }
+
+    @Override
+    public void onClick(DialogInterface dialogInterface, int i) {
+        if(i==-1){
+            startActivity(new Intent(this,MainActivity_together.class));
         }
     }
 }

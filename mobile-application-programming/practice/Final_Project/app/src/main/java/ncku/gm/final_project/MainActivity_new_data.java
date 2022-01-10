@@ -21,6 +21,7 @@ import android.widget.TimePicker;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import androidx.annotation.NonNull;
@@ -96,8 +97,6 @@ public class MainActivity_new_data extends AppCompatActivity implements View.OnC
                             cv.put("time",tmp[4]);
                             db.insert("table_location",null,cv);
                         }
-
-                        finish();
                     }
                 }
             }
@@ -137,18 +136,29 @@ public class MainActivity_new_data extends AppCompatActivity implements View.OnC
                     mClientThread.mOutputHandler.sendMessage(msg);
                     cus.moveToNext();
                 }
+                finish();
             }
         }else if(view.getId()==R.id.edt_time){
             ((EditText)findViewById(R.id.edt_time)).setText("");
-            new DatePickerDialog(this,this,2022,0,1).show();
+
+            Calendar calendar = Calendar.getInstance();
+            int nowyear = calendar.get(Calendar.YEAR);
+            int nowmon = calendar.get(Calendar.MONTH);
+            int nowdate = calendar.get(Calendar.DATE);
+
+
+            new DatePickerDialog(this,this,nowyear,nowmon,nowdate).show();
         }
     }
 
 
     @Override
     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+        Calendar calendar = Calendar.getInstance();
+        int nowhour = calendar.get(Calendar.HOUR_OF_DAY);
+        int nowmin = calendar.get(Calendar.MINUTE);
         ((EditText)findViewById(R.id.edt_time)).setText(String.format("%02d/%02d",(i1+1),i2));
-        new TimePickerDialog(this,this,12,00,true).show();
+        new TimePickerDialog(this,this,nowhour,nowmin,true).show();
     }
 
     @Override

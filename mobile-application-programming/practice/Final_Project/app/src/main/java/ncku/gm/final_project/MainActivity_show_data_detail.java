@@ -92,6 +92,21 @@ public class MainActivity_show_data_detail extends AppCompatActivity implements 
             ((Button)findViewById(R.id.btn_delete)).setVisibility(View.GONE);
             ((Button)findViewById(R.id.btn_sure)).setVisibility(View.VISIBLE);
         }
+
+        mInputHandler = new Handler()
+        {
+            @Override
+            public void handleMessage(Message msg)
+            {
+                if (msg.what == 0)
+                {
+                    String[] tmp = msg.obj.toString().split(",");
+                }
+            }
+        };
+
+        mClientThread = new ClientThread(mInputHandler, host, port);
+        new Thread(mClientThread).start();
     }
 
     @Override
@@ -105,11 +120,21 @@ public class MainActivity_show_data_detail extends AppCompatActivity implements 
             it.putExtra("Bundle",bdl);
             startActivity(it);
         }else if(view.getId()==R.id.btn_sure){
-            Intent it = new Intent(this,MainActivity_together.class);
-            Bundle bdl = new Bundle();
-            bdl.putString("id",cus.getString(0));
-            it.putExtra("Bundle",bdl);
-            startActivity(it);
+                Message msg = new Message();
+                msg.what = 1;
+                msg.obj = "together"+","+
+                        cus.getString(1)+","+
+                        locationData.getLat_start()+","+
+                        locationData.getLon_start()+","+
+                        locationData.getLat_end()+","+
+                        locationData.getLon_end();
+                mClientThread.mOutputHandler.sendMessage(msg);
+
+                Intent it = new Intent(this,MainActivity_together.class);
+                Bundle bdl = new Bundle();
+                bdl.putString("id",cus.getString(0));
+                it.putExtra("Bundle",bdl);
+                startActivity(it);
 
         }else if (view.getId()==R.id.btn_delete){
             AlertDialog.Builder b = new AlertDialog.Builder(this);
@@ -183,7 +208,14 @@ public class MainActivity_show_data_detail extends AppCompatActivity implements 
     @Override
     public void onClick(DialogInterface dialogInterface, int i) {
         if (i == DialogInterface.BUTTON_POSITIVE){
-            db.delete("table_location","_id="+cus.getString(0),null);
+            Message msg = new Message();
+            msg.what = 1;
+            msg.obj = "delete"+","+
+                    cus.getString(1)+","+
+                    cus.getString(2)+","+
+                    cus.getString(3)+","+
+                    cus.getString(4);
+            mClientThread.mOutputHandler.sendMessage(msg);
             finish();
         }
         else if (i == DialogInterface.BUTTON_NEUTRAL){

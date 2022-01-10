@@ -30,7 +30,7 @@
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:ems="40"
-            android:text="私訊"
+            android:text="聊天室"
             android:textAlignment="viewStart"
             android:textColor="@color/white"
             android:textSize="34sp" />
