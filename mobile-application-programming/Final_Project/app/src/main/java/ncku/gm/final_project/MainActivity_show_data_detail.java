@@ -130,6 +130,15 @@ public class MainActivity_show_data_detail extends AppCompatActivity implements 
                         locationData.getLon_end();
                 mClientThread.mOutputHandler.sendMessage(msg);
 
+                Message msg_del = new Message();
+                msg_del.what = 1;
+                msg_del.obj = "delete"+","+
+                        cus.getString(1)+","+
+                        cus.getString(2)+","+
+                        cus.getString(3)+","+
+                        cus.getString(4);
+                mClientThread.mOutputHandler.sendMessage(msg_del);
+
                 Intent it = new Intent(this,MainActivity_together.class);
                 Bundle bdl = new Bundle();
                 bdl.putString("id",cus.getString(0));
