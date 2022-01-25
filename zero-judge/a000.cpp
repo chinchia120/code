@@ -1,17 +1,5 @@
 #include <iostream>
 using namespace std;
 int main(void){
-    int a;
-    while(scanf("%d",&a)!=EOF){
-        if(a==-99999){
-            return 0;
-        }
-        while(a%17!=0){
-            a++;
-            if(a%5==0){
-                a++;
-            }
-        }
-        printf("%d\n",a);
-    }
+    cout<<(82*2+96*2+93*2+76*3+73*3+88+95*3+60*2+90*3+70*3+80*2)/26<<endl;
 }
