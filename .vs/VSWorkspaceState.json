@@ -1,6 +1,7 @@
 {
   "ExpandedNodes": [
     "",
+    "\\mobile-application-programming",
     "\\mobile-application-programming\\Final_Project",
     "\\mobile-application-programming\\Final_Project\\app",
     "\\mobile-application-programming\\Final_Project\\app\\src",
@@ -10,5 +11,6 @@
     "\\mobile-application-programming\\Final_Project\\app\\src\\main\\java\\ncku\\gm",
     "\\mobile-application-programming\\Final_Project\\app\\src\\main\\java\\ncku\\gm\\final_project"
   ],
+  "SelectedNode": "\\mobile-application-programming\\Final_Project\\app\\src\\main\\java\\ncku\\gm\\final_project\\ClientThread.java",
   "PreviewInSolutionExplorer": false
 }
