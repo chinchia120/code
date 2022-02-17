@@ -1,11 +1,11 @@
 arguments=
 auto.sync=false
 build.scans.enabled=false
-connection.gradle.distribution=GRADLE_DISTRIBUTION(WRAPPER)
+connection.gradle.distribution=GRADLE_DISTRIBUTION(VERSION(7.0-rc-1))
 connection.project.dir=
 eclipse.preferences.version=1
 gradle.user.home=
-java.home=C\:/Program Files/Microsoft/jdk-11.0.12.7-hotspot
+java.home=C\:/Program Files/Java/jdk-17
 jvm.arguments=
 offline.mode=false
 override.workspace.settings=true
