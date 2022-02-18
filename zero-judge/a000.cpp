@@ -1,5 +1,5 @@
 #include <iostream>
 using namespace std;
 int main(void){
-    cout<<1750*6<<endl;
+    cout<<17500<<endl;
 }
