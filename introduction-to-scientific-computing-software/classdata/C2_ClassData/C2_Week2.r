@@ -136,7 +136,3 @@ histogram(x= ~Rainfall|SeasonNum_NEW,data =dataset, xlab = "Rainfall(mm)",ylab =
 ############
 
 write.table(dataset,file="D:\\Week2\\output.csv",sep=",",row.names=F, na = "NA")
-
-
-
-
