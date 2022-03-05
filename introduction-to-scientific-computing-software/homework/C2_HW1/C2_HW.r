@@ -1,5 +1,5 @@
 setwd("C:\\Users\\user\\Documents\\code\\introduction-to-scientific-computing-software\\homework\\C2_HW1")
-getwd
+getwd()
 
 dataset_2009 <- read.csv("C2_HW_2009.csv")
 summary(dataset_2009)

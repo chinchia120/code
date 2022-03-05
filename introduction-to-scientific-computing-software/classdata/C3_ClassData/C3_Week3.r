@@ -31,9 +31,9 @@ summary(dataset)	#Get the summary statistics about the object
 library("lattice")
 require("lattice")
 
-boxplot(formula= Rainfall~SeasonNum ,data =dataset, xlab = "Season", ylab = "Rainfall(mm)", col ="red") 
+boxplot(formula = Rainfall~SeasonNum, data = dataset, xlab = "Season", ylab = "Rainfall(mm)", col ="red") 
 
-boxplot(formula= Rainfall~Town_name,data =dataset, xlab = "Town", ylab = "Rainfall(mm)", col ="blue")
+boxplot(formula = Rainfall~Town_name, data = dataset, xlab = "Town", ylab = "Rainfall(mm)", col = "blue")
 
 dataset2 <- na.omit(dataset)
 
