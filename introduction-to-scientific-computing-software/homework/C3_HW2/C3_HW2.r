@@ -13,5 +13,3 @@ lillie.test(dataset$放)
 boxplot(formula = 放~Season, data = dataset, xlab = "Season", ylab = "放()", col ="blue")
 
 boxplot(formula = 放~year, data = subset(dataset, dataset$city=="穝カ"), xlab = "Year", ylab = "放()", col = "blue")
-
-
