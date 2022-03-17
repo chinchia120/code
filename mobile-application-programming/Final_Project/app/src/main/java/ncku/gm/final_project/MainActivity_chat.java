@@ -27,7 +27,7 @@ public class MainActivity_chat extends AppCompatActivity implements View.OnClick
     UserInformation userInformation = new UserInformation();
 
 
-    //全域
+    //??????
     TextView tvmessage;
     ImageView imgsend;
     EditText edtxmessage;
@@ -55,11 +55,11 @@ public class MainActivity_chat extends AppCompatActivity implements View.OnClick
                 if (msg.what == 0)
                 {
                     String[] tmp = msg.obj.toString().split(",");
-                    //私訊
+                    //???????
                     if(tmp[0].matches("message")){
 
                         //Snackbar.make(findViewById(R.id.root_chat),"Get Message",Snackbar.LENGTH_LONG).show();
-                        //處理接收到的訊息(姓名,訊息,傳給誰)
+                        //???????????????X?????????(???????,??????,?????????)
                         /*
                         if( (tmp[1].matches(userInformation.getUser_name()) || tmp[3].matches(userInformation.getUser_name()) || (tmp[1].matches(tmp[3])))){
                             tvmessage.append(String.format("%s to %s : %s\n",tmp[1],tmp[3],tmp[2]));
