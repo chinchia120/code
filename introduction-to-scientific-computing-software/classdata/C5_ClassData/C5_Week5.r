@@ -133,7 +133,7 @@ t.test(data_height$Height[data_height$class=="A"], data_height$Height[data_heigh
 data_price <- read.csv("Price.csv")
 
 shapiro.test(data_price$Price)
-hist(data_price$Price, xlab="Price")
+hist(data_price$Price, main="Price", xlab="Price")
 
 data_price$Price_sqrt <- sqrt(data_price$Price)
 shapiro.test(data_price$Price_sqrt)
