@@ -40,6 +40,11 @@ TukeyHSD(aov1)
 library(laercio)  
 LDuncan(aov1,"brand_ID") 
 
+####
+install.packages("remotes")
+library(remotes)
+install_version("laercio","1.0.1")
+
 #2#
 ## One-way ANOVA##
  #First method#         
