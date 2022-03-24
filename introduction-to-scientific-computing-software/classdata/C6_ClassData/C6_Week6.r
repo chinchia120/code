@@ -27,7 +27,7 @@ summary(aov1)#Check p-value
 anova(lm(yeild~factor(brand_ID), data=data1))      
 
 #Test for Homogeneity of Variance 
-#install.packages("car")                          
+install.packages("car")                          
 library(car)
 leveneTest(data1$yeild, data1$brand_ID, center=mean)
 
@@ -65,6 +65,3 @@ install.packages("PMCMRplus")
 library(PMCMRplus)
 res<-gamesHowellTest(aov1)
 summary(res)
-
-
-  
