@@ -18,7 +18,7 @@ AC=dms2deg([336 51 52]);
 J=[500*(cosd(X(1,1))/sind(X(2,1))*sind(AC)+sind(X(1,1))/sind(X(2,1))*cosd(AC)) 500*(-sind(X(1,1))*cosd(X(2,1))/sind(X(2,1))/sind(X(2,1))*sind(AC)+sind(X(1,1))/sind(X(2,1))*cosd(AC)) ;
    500*(cosd(X(1,1))/sind(X(2,1))*cosd(AC)-sind(X(1,1))/sind(X(2,1))*sind(AC)) 500*(-sind(X(1,1))*cosd(X(2,1))/sind(X(2,1))/sind(X(2,1))*cosd(AC)-sind(X(1,1))/sind(X(2,1))*sind(AC))];
 tmp2=J*[tmp(1,1) 0 ; 0 tmp(2,2)]*transpose(J);
-SD=sqrt(tmp2)
+SD=sqrt(tmp2);
 
 %Q5
 length=[50.2 ; 120.5 ; 200.0];
@@ -28,6 +28,9 @@ A=[1 ; 1 ; 1];
 AT=transpose(A);
 P=diag([1/((1/angle(1,1)*0.4)^2+(length(1,1)/angle(1,1)^2*dms2rad([00 0.2 00]))^2) 1/((1/angle(2,1)*0.4)^2+(length(2,1)/angle(2,1)^2*dms2rad([00 0.2 00]))^2) 1/((1/angle(3,1)*0.4)^2+(length(3,1)/angle(3,1)^2*dms2rad([00 0.2 00]))^2)]);
 X=inv(AT*P*A)*(AT*P*L);
+V=A*X-L;
+tmp=transpose(V)*P*V/(3-1)*inv(AT*P*A);
+SD=sqrt(tmp);
 
 %Q10
 syms S1;
