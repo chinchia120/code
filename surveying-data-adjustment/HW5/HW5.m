@@ -35,7 +35,7 @@ V=inv(P)*transpose(B)*inv(B*inv(P)*transpose(B))*W;
 X=L+V;
 Q=B*inv(P)*transpose(B);
 tmp=transpose(V)*P*V/2*(inv(P)-inv(P)*transpose(B)*inv(Q)*B*inv(P));
-SD=sqrt(tmp);
+SD=sqrt(tmp)
 
 %Q22
 B=[-1 -1 0 1 0 0 0 ; 0 -1 -1 0 1 0 0 ; -1 -1 -1 0 0 1 0 ; 1 1 1 0 0 0 1];
@@ -66,8 +66,8 @@ SD_P=sqrt([1 1]*[tmp(1,1) tmp(1,2) ; tmp(1,2) tmp(2,2)]*[1 ; 1]);
 SD_Q=sqrt([-1]*[tmp(7,7)]*[-1]);
 SD_R=sqrt([1 1]*[tmp(1,1) tmp(1,3) ; tmp(1,3) tmp(3,3)]*[1 ; 1]);
 SD_S=sqrt([1]*[tmp(1,1)]*[1]);
-SD_PR=sqrt(tmp(6,6))
-SD_QS=sqrt([1 1]*[tmp(3,3) tmp(3,5) ; tmp(5,3) tmp(5,5)]*[1 ; 1])
+SD_PR=sqrt(tmp(6,6));
+SD_QS=sqrt([1 1]*[tmp(3,3) tmp(3,5) ; tmp(5,3) tmp(5,5)]*[1 ; 1]);
 
 %Q24
 B=[1 -1 0 0 ; 1 0 -1 0 ; 1 0 0 -1];
