@@ -1,1 +1,0 @@
-ols_step_both_p(exe2_model, penter = 0.05, prem = 0.1, details = TRUE)
