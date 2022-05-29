@@ -25,4 +25,3 @@ end
 plot(t, S, t, I, t, R);
 legend('S', 'I', 'R', 'Location','northwest');
 xlabel('hours');
-2000/24
