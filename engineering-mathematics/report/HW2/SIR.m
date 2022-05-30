@@ -4,10 +4,10 @@ clc;
 clf;    
 
 iterations = 1;  % Sets initial interation count to 1;
-pausetime = 0.05;  % Shows solutions at each time step. 
-runtime = 130;    % Duration time of simulation.
+pausetime = 0.01;  % Shows solutions at each time step. 
+runtime = 30;    % Duration time of simulation.
 g = (7565.538326-7155.469044)/402;
-b = 4*g;
+b = (7076506-7071382)*7083975.469/(7076506*314);
 
 % =============== Initial conditions for s、i and r ==========================
 initials = 7076506/7083975.469;
@@ -27,21 +27,21 @@ for i = 1 : max(arraysize)
     plot(t(i,1),sol(i,1),'b.','markersize',10,'MarkerFaceColor','b')
     legend('S')
     hold on;
-    axis([0 140 0 1])
+    axis([0 30 0 1])
 
     subplot(4,1,2)
     title('I')
     plot(t(i,1),sol(i,2),'r.','markersize',10,'MarkerFaceColor','b')
     legend('I')
     hold on;
-    axis([0 140 0 1])
+    axis([0 30 0 1])
     
     subplot(4,1,3)
     title('R')
     plot(t(i,1),sol(i,3),'g.','markersize',10,'MarkerFaceColor','b')
     legend('R')
     hold on;
-    axis([0 140 0 1])
+    axis([0 30 0 1])
   
     subplot(4,1,4)
     title('SIR')
@@ -50,7 +50,7 @@ for i = 1 : max(arraysize)
     plot(t(i,1),sol(i,2),'r.','markersize',10,'MarkerFaceColor','b')
     plot(t(i,1),sol(i,3),'g.','markersize',10,'MarkerFaceColor','b')
     legend('S', 'I', 'R')
-    axis([0 140 0 1])
+    axis([0 30 0 1])
     hold off;
     
     iterations = iterations + 1;   % Adds 1 to the iteration count. 
