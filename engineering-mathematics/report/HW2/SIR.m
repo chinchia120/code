@@ -7,10 +7,10 @@ iterations = 1;  % Sets initial interation count to 1;
 pausetime = 0.01;  % Shows solutions at each time step. 
 runtime = 30;    % Duration time of simulation.
 g = (7565.538326-7155.469044)/402;
-b = (7071382-7064833)*7083975.469/(7071382*402);
+b = (7071382-7064833)*7079349.538/(7071382*402);
 
 % =============== Initial conditions for s、i and r ==========================
-initials = 7071382/7083975.469;
+initials = 7071382/7079349.538;
 initiali = 402/7079349.538;
 initialr = (7565.538326-7155.469044)/7079349.538;
 
