@@ -1,0 +1,54 @@
+function SIR
+clear all;
+clc;    
+clf;    
+
+iterations = 1;  % Sets initial interation count to 1;
+pausetime = 0.05;  % Shows solutions at each time step. 
+runtime = 130;    % Duration time of simulation.
+g = (7565.538326-7155.469044)/402;
+b = 4*g;
+
+% =============== Initial conditions for s、i and r ==========================
+initials = 7076506/7083975.469;
+initiali = 314/7083975.469;
+initialr = (7565.538326-7155.469044)/7083975.469;
+
+deq1 = @(t,x) [-b*x(1)*x(2); b*x(1)*x(2)-g*x(2); g*x(2)];
+[t,sol] = ode45(deq1,[0 runtime],[initials initiali initialr]);
+
+arraysize = size(t);  % Sets time array size for the for loop.
+
+%============ Solutions are plotted at each time step =====================
+
+for i = 1 : max(arraysize)  
+    subplot(4,1,1)
+    title('S')
+    plot(t(i,1),sol(i,1),'b.','markersize',10,'MarkerFaceColor','b')
+    hold on;
+    axis([0 140 0 1])
+
+    subplot(4,1,2)
+    title('I')
+    plot(t(i,1),sol(i,2),'r.','markersize',10,'MarkerFaceColor','b')
+    hold on;
+    axis([0 140 0 1])
+    
+    subplot(4,1,3)
+    title('R')
+    plot(t(i,1),sol(i,3),'g.','markersize',10,'MarkerFaceColor','b')
+    hold on;
+    axis([0 140 0 1])
+  
+    subplot(4,1,4)
+    title('SIR')
+    hold on;
+    plot(t(i,1),sol(i,1),'b.','markersize',10,'MarkerFaceColor','b')
+    plot(t(i,1),sol(i,2),'r.','markersize',10,'MarkerFaceColor','b')
+    plot(t(i,1),sol(i,3),'g.','markersize',10,'MarkerFaceColor','b')
+    axis([0 140 0 1])
+    hold off;
+    
+    iterations = iterations + 1;   % Adds 1 to the iteration count. 
+    pause(pausetime)
+end
