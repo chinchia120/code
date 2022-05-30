@@ -1,5 +1,6 @@
 clc;
 clear all;
+format long;
 
 %Q19.12
 syms EA NA EB NB EC NC EMk1 NMk1 EMk2 NMk2 LAB LBC ThetaA ThetaB ThetaC SLAB SLBC SThetaA SThetaB SThetaC;
@@ -18,4 +19,22 @@ A = [diff(F_LAB,EB,1) diff(F_LAB,NB,1) ;
     diff(F_ThetaC,EB,1) diff(F_ThetaC,NB,1)];
 P = diag([1/SLAB^2 1/SLBC^2 1/SThetaA^2 1/SThetaB^2 1/SThetaC^2]);
 
-X_0 = simplify(subs(inv(A.'*P*A)*A.'*P*L,[EA NA EC NC EMk1 NMk1 EMk2 NMk2 LAB LBC ThetaA ThetaB ThetaC SLAB SLBC SThetaA SThetaB SThetaC] , [5572.32 , 6208.30 , 9552.58 , 6349.45 , 6212.18 , 4956.83 , 11547.42 , 6518.82 , 2717.95 , 2589.28 , dms2rad([254 53 08]) , dms2rad([262 46 20]) , dms2rad([134 34 14]) , 0.024 , 0.024 , 5.3/206265 , 5.1/206265 , 5.2/206265]))
+
+%X_0 = simplify(subs(inv(A.'*P*A)*A.'*P*L,[EA NA EC NC EMk1 NMk1 EMk2 NMk2 LAB LBC ThetaA ThetaB ThetaC SLAB SLBC SThetaA SThetaB SThetaC] , [5572.32 , 6208.30 , 9552.58 , 6349.45 , 6212.18 , 4956.83 , 11547.42 , 6518.82 , 2717.95 , 2589.28 , dms2rad([254 53 08]) , dms2rad([262 46 20]) , dms2rad([134 34 14]) , 0.024 , 0.024 , 5.3/206265 , 5.1/206265 , 5.2/206265]))
+
+%Q4
+syms a b;
+
+F4 = 500*sin(a)/sin(b);
+F5 = 500*sin(a+b)/sin(b);
+
+A = [1 0 ; 0 1 ; -1 -1 ; diff(F4,a,1) diff(F4,b,1) ; diff(F5,a,1) diff(F5,b,1)];
+W = [0 ; 0 ; dms2rad([60 00 30])-a-b ; 613.353-F4 ; 565.244-F5];
+
+%a = dms2rad([70 00 00]);
+%b = dms2rad([50 00 00]);
+
+X_0 = vpa(subs(inv(A.'*A)*A.'*W,[a b],[dms2rad([70 00 00]) dms2rad([50 00 00])])) 
+
+
+
