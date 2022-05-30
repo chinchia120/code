@@ -25,18 +25,21 @@ for i = 1 : max(arraysize)
     subplot(4,1,1)
     title('S')
     plot(t(i,1),sol(i,1),'b.','markersize',10,'MarkerFaceColor','b')
+    legend('S')
     hold on;
     axis([0 140 0 1])
 
     subplot(4,1,2)
     title('I')
     plot(t(i,1),sol(i,2),'r.','markersize',10,'MarkerFaceColor','b')
+    legend('I')
     hold on;
     axis([0 140 0 1])
     
     subplot(4,1,3)
     title('R')
     plot(t(i,1),sol(i,3),'g.','markersize',10,'MarkerFaceColor','b')
+    legend('R')
     hold on;
     axis([0 140 0 1])
   
@@ -46,6 +49,7 @@ for i = 1 : max(arraysize)
     plot(t(i,1),sol(i,1),'b.','markersize',10,'MarkerFaceColor','b')
     plot(t(i,1),sol(i,2),'r.','markersize',10,'MarkerFaceColor','b')
     plot(t(i,1),sol(i,3),'g.','markersize',10,'MarkerFaceColor','b')
+    legend('S', 'I', 'R')
     axis([0 140 0 1])
     hold off;
     
