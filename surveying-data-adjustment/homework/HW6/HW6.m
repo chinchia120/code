@@ -20,21 +20,34 @@ A = [diff(F_LAB,EB,1) diff(F_LAB,NB,1) ;
 P = diag([1/SLAB^2 1/SLBC^2 1/SThetaA^2 1/SThetaB^2 1/SThetaC^2]);
 
 
-%X_0 = simplify(subs(inv(A.'*P*A)*A.'*P*L,[EA NA EC NC EMk1 NMk1 EMk2 NMk2 LAB LBC ThetaA ThetaB ThetaC SLAB SLBC SThetaA SThetaB SThetaC] , [5572.32 , 6208.30 , 9552.58 , 6349.45 , 6212.18 , 4956.83 , 11547.42 , 6518.82 , 2717.95 , 2589.28 , dms2rad([254 53 08]) , dms2rad([262 46 20]) , dms2rad([134 34 14]) , 0.024 , 0.024 , 5.3/206265 , 5.1/206265 , 5.2/206265]))
+X_0 = vpa(subs(inv(A.'*P*A)*A.'*P*L,[EA NA EC NC EMk1 NMk1 EMk2 NMk2 LAB LBC ThetaA ThetaB ThetaC SLAB SLBC SThetaA SThetaB SThetaC] , [5572.32 , 6208.30 , 9552.58 , 6349.45 , 6212.18 , 4956.83 , 11547.42 , 6518.82 , 2717.95 , 2589.28 , dms2rad([254 53 08]) , dms2rad([262 46 20]) , dms2rad([134 34 14]) , 0.024 , 0.024 , 5.3/206265 , 5.1/206265 , 5.2/206265]))
 
 %Q4
 syms a b;
 
+F1 = a;
+F2 = b;
+F3 = pi()-a-b;
 F4 = 500*sin(a)/sin(b);
 F5 = 500*sin(a+b)/sin(b);
 
+L = [F1 ; F2 ; F3 ; F4 ; F5];
 A = [1 0 ; 0 1 ; -1 -1 ; diff(F4,a,1) diff(F4,b,1) ; diff(F5,a,1) diff(F5,b,1)];
 W = [0 ; 0 ; dms2rad([60 00 30])-a-b ; 613.353-F4 ; 565.244-F5];
 
-%a = dms2rad([70 00 00]);
-%b = dms2rad([50 00 00]);
+for i = 1:3
+    if i == 1
+        a_ = dms2rad([70 00 00]);
+        b_ = dms2rad([50 00 00]);
+    end
 
-X_0 = vpa(subs(inv(A.'*A)*A.'*W,[a b],[dms2rad([70 00 00]) dms2rad([50 00 00])])) 
+    dX = vpa(subs(inv(A.'*A)*A.'*W,[a b],[a_ b_]));
+    a_ = a_ + dX(1,1);
+    b_ = b_ + dX(2,1);
+end
 
-
-
+F1 = vpa(rad2dms(subs(F1,a,a_)))
+F2 = vpa(rad2dms(subs(F2,b,b_)))
+F3 = vpa(rad2dms(subs(F3,[a b],[a_ b_])))
+F4 = vpa(subs(F4,[a b],[a_ b_]))
+F5 = vpa(subs(F5,[a b],[a_ b_]))
