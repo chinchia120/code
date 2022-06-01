@@ -26,10 +26,11 @@ SThetaA = 5.3/206265;
 SThetaB = 5.1/206265;
 SThetaC = 5.2/206265;
 
-fi_AMk1 = atan2(XMk1-XA,YMk1-YA);
+fi_AMk1 = atan((XMk1-XA)/(YMk1-YA))+pi();
 fi_AB = fi_AMk1+ThetaA-2*pi();
 XB = XA+LAB*sin(fi_AB);
 YB = YA+LAB*cos(fi_AB);
+
 
 F1 = LAB+((XB-XA)/LAB)*dXB+((YB-YA)/LAB)*dYB;
 F2 = LBC-((XC-XB)/LBC)*dXB+((YC-YB)/LBC)*dYB;
@@ -42,10 +43,10 @@ A = [diff(F1,dXB,1) diff(F1,dYB,1) ;
     diff(F3,dXB,1) diff(F3,dYB,1) ; 
     diff(F4,dXB,1) diff(F4,dYB,1) ; 
     diff(F5,dXB,1) diff(F5,dYB,1)];
-L = [LAB ; LBC ; ThetaA ; ThetaB ; ThetaC];
+L = [LAB ; LAB ; ThetaA ; ThetaB ; ThetaC];
 X0 = [XB ; YB];
 W = vpa(L-A*X0);
-P = diag([1/SLAB^2 1/SLBC^2 1/SThetaA^2 1/SThetaB^2 1/SThetaC^2]);
+P = diag([1/SLAB^2 1/SLBC^2 1/SThetaA^2 1/SThetaB^2 1/SThetaC^2]); 
 
 X = vpa(inv(A.'*P*A)*A.'*P*W);
 
@@ -110,7 +111,7 @@ dms_a = vpa(rad2dms(F1_));
 dms_b = vpa(rad2dms(F2_));
 dms_c = vpa(rad2dms(F3_));
 
-fi_AB = atan2(EB-EA,NB-NA);
+fi_AB = atan((EB-EA)/(NB-NA));
 fi_AC = fi_AB+(2*pi()-F3);
 fi_AC_ = vpa(fi_AB+(2*pi()-F3_));
 
@@ -121,7 +122,7 @@ C = [EA+F4_*sin(fi_AC_) NA+F4_*cos(fi_AC_)];
 
 A_ = vpa(subs(A,[a,b],[a_ b_]));
 %V = vpa([F1_-a0 ; F2_-b0 ; F3_-c0 ; F4_-AC ; F5_-BC]);
-Cov_ab = (20/206265)^2*inv(A_.'*A_);
+Cov_ab = (20/206265)^2*inv(A_.'*A_)
 
 EC = EA+F4*sin(fi_AC);
 NC = NA+F4*cos(fi_AC);
@@ -130,5 +131,5 @@ J_ = vpa(subs(J,[a b],[a_ b_]));
 Cov_C = J_*Cov_ab*J_.';
 SD_C2 = sqrt(Cov_C);
 
-SD_C1 = [0.053 -0.0004 ; -0.0004 0.0047];
+SD_C1 = sqrt([0.0021 -0.0004 ; -0.0004 0.0017]);
 ans = SD_C2./SD_C1;
