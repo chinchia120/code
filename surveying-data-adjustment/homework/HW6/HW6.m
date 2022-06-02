@@ -161,7 +161,6 @@ dms_fi_AC = vpa(rad2dms(fi_AC_));
 C = [EA+F4_*sin(fi_AC_) NA+F4_*cos(fi_AC_)];
 
 A_ = vpa(subs(A,[a,b],[a_ b_]));
-%V = vpa([F1_-a0 ; F2_-b0 ; F3_-c0 ; F4_-AC ; F5_-BC]);
 Cov_ab = (20/206265)^2*inv(A_.'*A_);
 
 EC = EA+F4*sin(fi_AC);

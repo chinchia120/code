@@ -1,4 +1,4 @@
-setwd("C:\\Users\\user\\Documents\\code\\introduction-to-scientific-computing-software\\homework\\practice")
+setwd("C:\\Users\\user\\Documents\\code\\introduction-to-scientific-computing-software\\homework\\midterm_practice")
 getwd()
 
 #Q1

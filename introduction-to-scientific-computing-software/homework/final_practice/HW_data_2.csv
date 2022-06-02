@@ -1,0 +1,170 @@
+,id,fracture,age,sex,weight,height,medication,bmd
+1,469,no fracture,57.05276775,F,64,155.5,Anticonvulsant,0.8793
+2,8724,no fracture,75.7412248,F,78,162,No medication,0.79460001
+3,6736,no fracture,70.7789,M,73,170.5,No medication,0.90670002
+4,24180,no fracture,78.24717531,F,60,148,No medication,0.7112
+5,17072,no fracture,54.1918766,M,55,161,No medication,0.79089999
+6,3806,no fracture,77.17775151,M,65,168,No medication,0.73009998
+7,17106,no fracture,56.18061769,M,77,159,No medication,1.0096
+8,23834,no fracture,49.91613988,F,59,150,No medication,0.73100001
+9,2454,no fracture,68.40840332,M,64,167,Glucocorticoids,0.6893
+10,2088,no fracture,66.25664804,M,72,159.5,No medication,0.94660002
+11,5364,no fracture,45.86658172,M,62,169,No medication,0.80150002
+12,8922,no fracture,73.97047074,F,68,164,No medication,0.57929999
+13,23890,no fracture,60.55541712,F,76,155,No medication,0.97600001
+14,3047,no fracture,64.2131031,M,90,175,Glucocorticoids,0.91839999
+15,2179,no fracture,53.3954402,M,70,162.5,No medication,0.80199999
+16,3800,no fracture,66.82546218,M,76,171,No medication,0.80330002
+17,7528,no fracture,57.93459324,M,67,160,Glucocorticoids,0.7978
+18,5288,no fracture,40.23236742,M,66,165,No medication,1.039
+19,109,no fracture,69.04817915,F,72,154,No medication,0.78609997
+20,8622,no fracture,57.80229798,F,50,152,No medication,0.82539999
+21,23843,no fracture,58.19132915,F,59,154,No medication,0.84990001
+22,4205,no fracture,46.08154976,M,73,171,No medication,0.89819998
+23,159,no fracture,65.79535204,F,74,145,No medication,0.77380002
+24,8960,no fracture,60.18946129,F,55,153.5,Glucocorticoids,0.83770001
+25,23586,no fracture,54.99218408,M,75,172,No medication,0.81260002
+26,398,no fracture,51.43071736,F,67.5,154,Glucocorticoids,0.92339998
+27,6732,no fracture,70.19857261,M,68,167,No medication,1.0405999
+28,688,no fracture,77.15502036,M,69,166,Glucocorticoids,1.002
+29,338,no fracture,70.42187319,F,55,162,Anticonvulsant,0.625
+30,5292,no fracture,75.01547985,M,69,173.5,No medication,0.9364
+31,7776,no fracture,54.91253353,M,69,168,No medication,1.0908999
+32,23867,no fracture,70.0285031,F,59,155,No medication,0.80790001
+33,6981,no fracture,48.81687141,M,96,169,No medication,0.89950001
+34,8704,no fracture,49.78743656,F,46,150,No medication,0.73500001
+35,17086,no fracture,41.41761507,M,66,160,No medication,1.0003
+36,812,no fracture,67.92438462,M,80,170,No medication,1.0128
+37,22723,no fracture,60.8313568,M,70,159.5,No medication,1.0265
+38,6726,no fracture,62.71790768,M,78,161,No medication,0.8994
+39,2789,no fracture,69.65373122,M,80,164,No medication,1.0031
+40,326,no fracture,81.47969034,F,78,145,No medication,0.90609998
+41,55,no fracture,73.23042708,F,52,153,No medication,0.71280003
+42,424,no fracture,54.42421077,F,71,165,No medication,1.0266
+43,342,no fracture,66.64486617,F,60,153,No medication,0.963
+44,276,no fracture,83.84773532,M,79,163,No medication,0.84289998
+45,23912,no fracture,67.65108105,F,56,150,No medication,0.92619997
+46,23828,no fracture,82.42315923,F,74,156,No medication,0.81709999
+47,2111,no fracture,54.23390445,M,50,169,No medication,0.71280003
+48,181,no fracture,42.81703317,F,56,151,No medication,0.88880002
+49,197,no fracture,69.72844532,M,84,164.5,Glucocorticoids,1.3624001
+50,5509,no fracture,76.8639147,M,88,167,No medication,1.0015
+51,2024,no fracture,43.45071208,M,75,165,Glucocorticoids,1.0197999
+52,2155,no fracture,67.57338008,M,39,159,No medication,0.55140001
+53,35,no fracture,56.20812741,F,68,150.5,No medication,0.71710002
+54,6973,no fracture,88.7537953,M,58,153,Glucocorticoids,0.85479999
+55,334,no fracture,70.40792405,F,79,153,No medication,0.7766
+56,8971,no fracture,62.06523735,F,85,148.5,Glucocorticoids,0.7999
+57,362,no fracture,61.18467166,F,67,149,No medication,0.80129999
+58,17116,no fracture,48.28948823,M,68,160,No medication,0.9716
+59,134,no fracture,49.73132379,F,72,160.5,No medication,0.98509997
+60,3088,no fracture,36.64831103,M,54,175,No medication,0.85600001
+61,23861,no fracture,63.67318436,F,63,158,No medication,0.70950001
+62,22162,no fracture,74.17835572,M,60,166,No medication,0.63380003
+63,9051,no fracture,63.28728844,F,62,165.5,No medication,0.73839998
+64,8906,no fracture,56.95872053,F,59,164,No medication,0.73470002
+65,8829,no fracture,46.56490164,F,56,157,No medication,0.73460001
+66,8854,no fracture,47.02465066,F,47,148.5,Glucocorticoids,0.64960003
+67,3090,no fracture,84.78739433,M,68,165,No medication,1.2508
+68,304,no fracture,54.40617797,F,69,160,No medication,0.88190001
+69,8896,no fracture,51.59653972,F,54,154,No medication,0.7755
+70,8674,no fracture,61.17008505,F,70,152,No medication,0.8599
+71,22168,no fracture,73.94030609,M,75,164.5,Glucocorticoids,0.8829
+72,8590,no fracture,54.77277445,F,62,158,No medication,0.79659998
+73,24097,no fracture,66.67269226,M,75,166,No medication,0.77579999
+74,24051,no fracture,59.46131701,F,82,148.5,No medication,0.90359998
+75,8850,no fracture,50.36051644,F,73,161.5,Glucocorticoids,0.86379999
+76,9016,no fracture,55.41170957,F,59,160,No medication,0.75099999
+77,191,no fracture,56.54581828,M,71,166,No medication,1.0839
+78,7831,no fracture,63.48783737,M,55,164,Glucocorticoids,0.74089998
+79,2181,no fracture,72.08055823,M,69,164,No medication,0.99900001
+80,8642,no fracture,58.26221496,F,51,150.5,Anticonvulsant,0.58990002
+81,5360,no fracture,58.67087154,M,62,170,No medication,0.87199998
+82,6924,no fracture,58.33505192,M,91,176,No medication,1.1335
+83,6696,no fracture,39.25494707,M,76,173.5,No medication,1.0502
+84,8999,no fracture,60.23658177,F,70,158,Glucocorticoids,0.8362
+85,8751,no fracture,63.76954463,F,56,152,Glucocorticoids,0.72149998
+86,2143,no fracture,44.23967859,M,81,177,No medication,0.9824
+87,17182,no fracture,79.39970672,M,76,161,No medication,0.9436
+88,17128,no fracture,65.13435742,M,67,157,No medication,0.86220002
+89,23855,no fracture,66.55921764,F,63,159,No medication,0.78049999
+90,5495,no fracture,35.81405763,M,79,168.5,No medication,0.7895
+91,22768,no fracture,69.08663791,M,77,162,No medication,0.85089999
+92,17052,no fracture,59.26117883,M,55,163,Glucocorticoids,0.76599997
+93,23625,no fracture,59.70722073,M,78,175,No medication,0.85930002
+94,8950,no fracture,61.60041411,F,68,159,No medication,0.91390002
+95,175,no fracture,69.23719028,F,78,158,No medication,0.7586
+96,17100,no fracture,52.32252245,M,71,165,No medication,0.87760001
+97,24200,no fracture,72.77238723,F,81,149.5,Glucocorticoids,0.509
+98,17140,no fracture,60.22138607,M,94,166,No medication,1.0617
+99,24208,no fracture,58.81240985,F,74,149,No medication,0.83069998
+100,8574,no fracture,54.49762635,F,57,165.5,No medication,0.73110002
+101,23904,no fracture,52.90099358,F,61,154,No medication,0.97060001
+102,17178,no fracture,63.02469707,M,71,161,No medication,1.0366
+103,8876,no fracture,64.0659499,F,60,165,No medication,0.77819997
+104,17090,no fracture,52.79292063,M,77,175.5,No medication,0.88880002
+105,6684,no fracture,49.20966328,M,66,157,No medication,0.72689998
+106,23794,no fracture,68.57130833,F,48,161,No medication,0.70959997
+107,77,no fracture,77.9064001,F,50,152,No medication,0.61220002
+108,24204,no fracture,68.55087894,F,70,154,No medication,0.83899999
+109,6676,no fracture,44.68312684,M,67,172,No medication,0.90100002
+110,69,no fracture,67.92552839,F,62,159,No medication,1.0176001
+111,8592,no fracture,68.06825266,F,49,144,No medication,0.75089997
+112,23790,no fracture,52.47831105,F,59,150.5,No medication,0.73140001
+113,6702,no fracture,60.88359606,M,73,166.5,No medication,0.83700001
+114,5320,no fracture,43.46317104,M,51,162,No medication,0.796
+115,2306,no fracture,57.56917982,M,74,176,Anticonvulsant,1.0287
+116,446,no fracture,56.96445803,M,64.5,162,Glucocorticoids,0.72009999
+117,6602,no fracture,52.24655176,M,64,168,No medication,0.61870003
+118,23873,no fracture,56.93126646,F,60,159,Anticonvulsant,0.67439997
+119,8892,no fracture,66.33562311,F,62,150.5,No medication,0.86809999
+120,165,fracture,83.09364681,F,52,156,Anticonvulsant,0.45860001
+121,690,fracture,81.48136958,M,54,154,Glucocorticoids,0.48179999
+122,5350,fracture,53.53171717,M,69,163.5,No medication,0.52789998
+123,434,fracture,69.21393466,F,56,157,No medication,0.52850002
+124,278,fracture,73.06759806,M,54,166,No medication,0.52869999
+125,2029,fracture,87.93494224,M,57,156.5,No medication,0.53869998
+126,103,fracture,77.76867742,F,61,150,No medication,0.54189998
+127,382,fracture,81.08738516,F,50,149.5,No medication,0.55150002
+128,23919,fracture,53.7692897,F,40,150,Glucocorticoids,0.55790001
+129,5348,fracture,80.77319346,M,79,159,Glucocorticoids,0.56760001
+130,224,fracture,76.94473691,F,37,152,No medication,0.56349999
+131,2458,fracture,82.40717913,M,48,158,No medication,0.57209998
+132,322,fracture,57.58119772,F,36,152,No medication,0.52939999
+133,302,fracture,77.81962254,F,48,151,No medication,0.55470002
+134,67,fracture,76.74551614,F,52,146,Glucocorticoids,0.56029999
+135,4335,fracture,54.15273476,M,79,161,No medication,0.5693
+136,24031,fracture,72.27013664,F,50,154,No medication,0.60009998
+137,24027,fracture,68.01774844,F,58,153,No medication,0.6103
+138,442,fracture,88.02415052,M,52,151.5,No medication,0.62040001
+139,23995,fracture,69.97770123,F,85,148.5,No medication,0.62639999
+140,145,fracture,71.17212415,F,63,148,Glucocorticoids,0.40759999
+141,5503,fracture,70.94756425,M,59,167,No medication,0.44069999
+142,8938,fracture,74.7968828,F,48,160,No medication,0.48519999
+143,87,fracture,83.21982284,F,51,150,No medication,0.55549997
+144,17082,fracture,81.97955903,M,66,166,No medication,0.56150001
+145,2006,fracture,85.90159463,M,57,163,No medication,0.61019999
+146,4070,fracture,71.47172115,M,62,177,No medication,0.62970001
+147,24190,fracture,76.73260358,F,73,155.5,No medication,0.63849998
+148,2314,fracture,83.67835729,M,56,168,No medication,0.63880002
+149,292,fracture,85.57631118,F,41,142,No medication,0.64090002
+150,24192,fracture,70.81094137,F,66,151,No medication,0.64319998
+151,24182,fracture,68.68328771,F,48,154,No medication,0.64480001
+152,2018,fracture,86.85986938,M,54,170,Anticonvulsant,0.64950001
+153,5523,fracture,80.06020512,M,62,162.5,Anticonvulsant,0.67079997
+154,9028,fracture,61.64450359,F,55,162,No medication,0.68800002
+155,3079,fracture,66.80418542,M,61,168.5,No medication,0.6882
+156,834,fracture,37.46199496,M,55,156,No medication,0.68839997
+157,17104,fracture,63.4419661,M,64,174,No medication,0.68989998
+158,354,fracture,51.04837034,F,68,164.5,No medication,0.6904
+159,23902,fracture,48.52365084,F,55,159.5,No medication,0.6904
+160,5298,fracture,41.35119985,M,45,159.5,No medication,0.7076
+161,2797,fracture,84.72176364,M,52,161,No medication,0.70850003
+162,2020,fracture,59.07608201,M,64,170,No medication,0.72460002
+163,23824,fracture,50.27605888,F,60,170,Anticonvulsant,0.73989999
+164,7192,fracture,67.25216263,M,80,172,No medication,0.77450001
+165,21892,fracture,77.98254308,M,74,164,No medication,0.79409999
+166,24140,fracture,50.28530296,F,59,161,No medication,0.79710001
+167,6969,fracture,46.35972067,M,67,169,No medication,0.80369997
+168,5505,fracture,54.78836776,M,70,166,No medication,0.80720001
+169,71,fracture,69.99482235,F,68.5,165,No medication,0.8664
