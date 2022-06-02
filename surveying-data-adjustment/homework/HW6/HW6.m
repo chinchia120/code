@@ -83,15 +83,24 @@ J = [diff(X(1,1),XB,1) diff(X(1,1),YB,1) ;
     diff(X(4,1),XB,1) diff(X(4,1),YB,1) ;
     diff(X(5,1),XB,1) diff(X(5,1),YB,1)];
 Cov_obs = subs(J*Cov_B*J.',[XB YB],[XB_ YB_]);
-SD_LAB = vpa(sqrt(Cov_obs(1,1))) %ans_Q3
-SD_LBC = vpa(sqrt(Cov_obs(2,2))) %ans_Q3
-SD_ThetaA = vpa(sqrt(Cov_obs(3,3))) %ans_Q3
-SD_ThetaB = vpa(sqrt(Cov_obs(4,4))) %ans_Q3
-SD_thetaC = vpa(sqrt(Cov_obs(5,5))) %ans_Q3
+SD_LAB = vpa(sqrt(Cov_obs(1,1))); %ans_Q3
+SD_LBC = vpa(sqrt(Cov_obs(2,2))); %ans_Q3
+SD_ThetaA = vpa(sqrt(Cov_obs(3,3))); %ans_Q3
+SD_ThetaB = vpa(sqrt(Cov_obs(4,4))); %ans_Q3
+SD_thetaC = vpa(sqrt(Cov_obs(5,5))); %ans_Q3
 
 N_inv = vpa(inv(A_.'*P*A_)); %ans_Q4
 
-
+X_0025_3 = 9.348;
+X_0975_3 = 0.216;
+X2_test = 3*SD_0^2/1;
+while 1
+    if X2_test>X_0975_3 && X2_test<X_0025_3 %ans_Q5
+        fprintf('Can not reject\n');
+        break;
+    end
+    fprintf('Reject\n');    
+end
 
 %Q4
 syms a b;
