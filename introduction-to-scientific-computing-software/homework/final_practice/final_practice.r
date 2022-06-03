@@ -6,14 +6,21 @@ data2 <- read.csv("HW_data_2.csv")
 
 #Q1_1
 library("Hmisc")
-rcorr(as.matrix(data1[,6:15]), type=c("pearson"))
+rcorr(as.matrix(data1[,6:15]), type = c("pearson"))
 
 #Q1_2
-data1_model <- lm(PM25_obs~NO2+PM10+O3+Temperature+RH+NDVI+Residential_Area+Majorroad+Waterbody, data=data1)
+data1_model <- lm(PM25_obs ~ NO2 + PM10 + O3 + Temperature + RH + NDVI + Residential_Area + Majorroad + Waterbody, data = data1)
 library("olsrr")
-ols_step_both_p(data1_model, penter=0.05, prem=0.1, details=TRUE)
+ols_step_both_p(data1_model, penter = 0.05, prem = 0.1, details = TRUE)
 
 #Q1_3
 ols_coll_diag(data1_model) 
 
 #Q2_1
+data2_mod_null <- glm(as.factor(fracture) ~ 1, family = "binomial", data = data2)
+data2_mod_full <- glm(as.factor(fracture) ~ as.factor(age) + as.factor(sex) + as.factor(weight) + as.factor(height) + as.factor(medication) + as.factor(bmd), family = "binomial", data = data2, control = list(maxit = 100))
+data2_mod = step(data2_mod_null, scope = list(lower = data2_mod_null, upper = data2_mod_full), direction = "both", trace = 1)
+
+#Q2_2
+exp(coef(data2_mod))
+anova(data2_mod, test = "Chisq")
