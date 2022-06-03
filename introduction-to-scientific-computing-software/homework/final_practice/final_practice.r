@@ -18,8 +18,9 @@ ols_coll_diag(data1_model)
 
 #Q2_1
 data2_mod_null <- glm(as.factor(fracture) ~ 1, family = "binomial", data = data2)
-data2_mod_full <- glm(as.factor(fracture) ~ as.factor(age) + as.factor(sex) + as.factor(weight) + as.factor(height) + as.factor(medication) + as.factor(bmd), family = "binomial", data = data2, control = list(maxit = 100))
+data2_mod_full <- glm(as.factor(fracture) ~ age + as.factor(sex) + weight + height + as.factor(medication) + bmd, family = "binomial", data = data2)
 data2_mod = step(data2_mod_null, scope = list(lower = data2_mod_null, upper = data2_mod_full), direction = "both", trace = 1)
+summary(data2_mod)
 
 #Q2_2
 exp(coef(data2_mod))
