@@ -24,3 +24,9 @@ data2_mod = step(data2_mod_null, scope = list(lower = data2_mod_null, upper = da
 #Q2_2
 exp(coef(data2_mod))
 anova(data2_mod, test = "Chisq")
+
+#Q3_1
+data3 <- data.frame(row.names = c("increase", "same"), A = c(32, 13), B = c(27, 8), C = c(19, 5))
+library(vcd)
+independence_table(data.matrix(data3))
+chisq.test(data3, simulate.p.value = FALSE)
