@@ -90,6 +90,10 @@ rcorr(as.matrix(data_taipei[,2:9]), type = c("spearman"))
 summary(lm(Income ~ Education + Area + Dominate + Income + Outcome + Stationary + Spend + House, data = data_taipei))
 
 #Ãþ§O«¬
-mod_null <- glm(Income ~ 1, family = "binomial", data = data_2020)
-mod_full <- glm(Income ~ as.factor(Six_Capital) + Education + Area + Dominate + Income + Outcome + Stationary + Spend + House, family = "binomial", data = data_2020)
+mod_null <- glm(as.factor(Six_Capital) ~ 1, family = "binomial", data = data_2020)
+mod_full <- glm(as.factor(Six_Capital) ~ Income + Education + Area + Dominate + Income + Outcome + Stationary + Spend + House, family = "binomial", data = data_2020)
 mod = step(mod_null, scope = list(lower = mod_null, upper = mod_full), direction = "forward", trace = 1)
+summary(mod)
+
+View(exp(coef(mod)))
+View(exp(confint(mod)))
