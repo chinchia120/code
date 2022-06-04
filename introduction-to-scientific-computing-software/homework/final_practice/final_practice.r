@@ -15,6 +15,7 @@ ols_step_both_p(data1_model, penter = 0.05, prem = 0.1, details = TRUE)
 
 #Q1_3
 ols_coll_diag(data1_model) 
+data1_model <- lm(PM25_obs ~ NO2 + PM10+ NDVI + Majorroad + Waterbody, data = data1)
 summary(data1_model)
 
 #Q2_1
@@ -24,7 +25,7 @@ data2_mod = step(data2_mod_null, scope = list(lower = data2_mod_null, upper = da
 summary(data2_mod)
 
 #Q2_2
-View(exp(coef(data2_mod)))
+View(exp(coef(data2_mod_full)))
 anova(data2_mod, test = "Chisq")
 
 #Q3_1
