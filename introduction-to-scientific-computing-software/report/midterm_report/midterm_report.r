@@ -15,7 +15,7 @@ histogram(x= ~NTD|City,data = data, xlab = "NT",ylab = "Count",layout=c(13,2))
 boxplot(formula= NTD~City,data =data, xlab = "City", ylab = "NT", col ="blue") 
 
 #Q2
-t.test(data4$NTD, mu = mean(data$NTD,na.rm=TRUE)) 
+t.test(data_spend$NTD, mu = mean(data$NTD,na.rm=TRUE)) 
 
 #Q3
 data5<-read.csv("data5.csv")
