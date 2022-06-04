@@ -9,6 +9,8 @@ data_education <- read.csv("15歲以上民間人口之教育程度結構-大專及以上(％).csv", 
 data_dominate <- read.csv("平均每戶可支配所得.csv", header = TRUE)
 data_spend <- read.csv("平均每戶消費支出.csv", header = TRUE)
 data_house <- read.csv("自有住宅率.csv", header = TRUE)
+data_taipei <- read.csv("data_Taipei.csv", header = TRUE)
+data_2020 <- read.csv("data_2020.csv", header = TRUE)
 
 #敘述統計
 str(data_income)
@@ -83,6 +85,11 @@ leveneTest(data_stationary_city$rate, data_stationary_city$city, center = mean)
 TukeyHSD(aov(rate ~ factor(city), data = data_stationary_city))
 
 #連續型
-
+library("Hmisc")
+rcorr(as.matrix(data_taipei[,2:9]), type = c("spearman"))
+summary(lm(Income ~ Education + Area + Dominate + Income + Outcome + Stationary + Spend + House, data = data_taipei))
 
 #類別型
+mod_null <- glm(Income ~ 1, family = "binomial", data = data_2020)
+mod_full <- glm(Income ~ as.factor(Six_Capital) + Education + Area + Dominate + Income + Outcome + Stationary + Spend + House, family = "binomial", data = data_2020)
+mod = step(mod_null, scope = list(lower = mod_null, upper = mod_full), direction = "forward", trace = 1)
