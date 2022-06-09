@@ -17,6 +17,7 @@ function [an,bn,f] = FS(fx,x,n,a,b)
         bn = [bn,bnn];
         f = f+ann*cos(i*pi()*x/l)+bnn*sin(i*pi()*x/l);
     end
+    
     if a+b
         f = subs(fx,x,x-l-a);
     end     
