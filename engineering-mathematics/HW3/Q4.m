@@ -1,5 +1,5 @@
 clc;
-clear all;
+clear;
 
 %Q4
 pi_ = pi();
@@ -10,5 +10,5 @@ an = 1/(2*pi)*int(fx*cos(n*x),x,-pi,pi);
 bn = 1/(2*pi)*int(fx*sin(n*x),x,-pi,pi);
 
 for i = 1:10
-    subs(an,[n,pi],[i,pi_])
+    subs(an,[n,pi],[i,pi_]);
 end    
