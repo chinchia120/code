@@ -8,6 +8,7 @@ noise = randn(1,size(y,2));
 y_noise = y+noise;
 FY_noise = fft(y_noise);
 FY = FY_noise;
+
 for i = 1:size(FY_noise,2)
     if abs(FY(i))<100
         FY(i) = 0;
