@@ -3,7 +3,7 @@ clf;
 clear;
 
 t = 0:1/100:4;
-y = 3*sin(2*pi()*t);
+y = cos(2*pi*t)+cos(5*pi*t);
 noise = randn(1,size(y,2));
 y_noise = y+noise;
 FY_noise = fft(y_noise);
