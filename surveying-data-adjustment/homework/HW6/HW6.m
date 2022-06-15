@@ -66,7 +66,7 @@ end
 
 X_ = vpa(subs(X,[XB YB],[XB_ YB_]));
 V = vpa(X_-L);
-SD_0 = vpa(sqrt((V.'*P*V/(5-2)))) %ans_Q1
+SD_0 = vpa(sqrt((V.'*P*V/(5-2)))); %ans_Q1
 
 XB_adj = XB_; %ans_Q2
 YB_adj = YB_; %ans_Q2
