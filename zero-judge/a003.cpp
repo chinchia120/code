@@ -6,14 +6,14 @@ int main() {
     cin >> a >> b;
     s = (a * 2 + b) % 3;
     if (s == 0) {
-        cout << "���q" << endl;
+        cout << "??" << endl;
     }
     if (s == 1) {
-        cout << "�N" << endl;
+        cout << "?" << endl;
     }
     if (s == 2) {
-        cout << "�j�N" << endl;
+        cout << "??" << endl;
     }
-
+  
     return 0;
 }
