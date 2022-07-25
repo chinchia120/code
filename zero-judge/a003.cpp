@@ -6,13 +6,13 @@ int main() {
     cin >> a >> b;
     s = (a * 2 + b) % 3;
     if (s == 0) {
-        cout << "??" << endl;
+        cout << "´¶³q" << endl;
     }
     if (s == 1) {
-        cout << "?" << endl;
+        cout << "¦N" << endl;
     }
     if (s == 2) {
-        cout << "??" << endl;
+        cout << "¤j¦N" << endl;
     }
   
     return 0;
