@@ -74,7 +74,7 @@ f_INS = load([PathNameGT, FileNameGT]);
 t_INS_start = f_INS(1, 1);
 LLF_NED_INS = wgs2llf(f_INS, initPOS4WGS84);
 
-disp(['Local Frame = ', sprintf('%7.4f, %7.4f', LLF_NED_INS(80000, 2), LLF_NED_INS(80000, 3))])
+disp(['Local Frame = ', sprintf('%7.4f, %7.4f', LLF_NED_INS(80000, 2), LLF_NED_INS(80000, 3))]);
 for i = 1:size(LLF_NED_INS, 1)
     if (LLF_NED_INS(i, 10) < 0)
         LLF_NED_INS(i, 10) = LLF_NED_INS(i, 10) + 360;
@@ -82,7 +82,7 @@ for i = 1:size(LLF_NED_INS, 1)
     LLF_NED_INS(i, 2) = LLF_NED_INS(i, 2) + 2544814.048;
     LLF_NED_INS(i, 3) = LLF_NED_INS(i, 3) + 169492.873;
 end
-disp(['TWD97 Frame = ', sprintf('%10.4f, %11.4f', LLF_NED_INS(80000, 2), LLF_NED_INS(80000, 3))])
+disp(['TWD97 Frame = ', sprintf('%10.4f, %11.4f', LLF_NED_INS(80000, 2), LLF_NED_INS(80000, 3))]);
 
 clearvars i f_ref;
 %% ========== Read the First Point Cloud and Display It at the MATLAB ========== %%
@@ -104,7 +104,6 @@ zlabel(lidarPlayer.Axes, 'Z (m)')
 title(lidarPlayer.Axes, 'Lidar Sensor Data')
 
 % ===== Visualize Point Cloud ===== %
-
 for n = 1: 2
     ptCloud = readFrame(veloReader, n);
     view(lidarPlayer, ptCloud);
@@ -132,7 +131,7 @@ absTform = rigidtform3d;  % Absolute transformation to reference frame
 relTform = rigidtform3d;  % Relative transformation between successive scans
 
 viewId = 1;
-skipFrames = 10;
+skipFrames = 1;
 numFrames = veloReader.NumberOfFrames;
 displayRate = 10; % Update display every 100 frames
 start_ins_row = 1;
@@ -140,7 +139,7 @@ firstFrame = true;
 currScan = 0;
 t_INS = t_INS_start;
 
-for n = 1: skipFrames: numFrames
+for n = 14800: skipFrames: 15100
     t_lidar = PCAP_UTC_TO_GPS_TIME(seconds(veloReader.Timestamps(n))*1000000, LiDAR_CFG);
 
     % Check an existing time of current LiDAR
@@ -168,7 +167,7 @@ for n = 1: skipFrames: numFrames
     r_ln_INS = (R_n2b_INS')*r_lb + r_bn_INS'; % Lidar position (from TC solution) in n-frame
 
     % Read point cloud
-    ptCloudOrig = readFrame(veloReader,n);
+    ptCloudOrig = readFrame(veloReader, n);
 
     % Process point cloud
     ptCloud = helperProcessPointCloud(ptCloudOrig);
@@ -228,10 +227,10 @@ absPoses = vSet.Views.AbsolutePose;
 mapGridSize = 0.2;
 ptCloudMap = pcalign(ptClouds, absPoses, mapGridSize);
 
-%output_pcd(ptCloudMap)
+output_pcd(ptCloudMap, skipFrames);
 
 %% ========== Function ========== %%
-function output_pcd(ptCloudMap)
+function output_pcd(ptCloudMap, skipFrames)
     % Assuming ptCloud is your point cloud object and 'intensity' is a vector of intensity values
     minI = min(double(ptCloudMap.Intensity));
     maxI = max(double(ptCloudMap.Intensity));
@@ -246,7 +245,7 @@ function output_pcd(ptCloudMap)
     ptCloudMap.Color = colorMap;
     
     % Write to PLY file
-    pcwrite(ptCloudMap, 'Odometry_vlp16_map.pcd');
+    pcwrite(ptCloudMap, sprintf('vlp16_GM_14800_15100_skipframe_%02d.pcd', skipFrames));
 end
 
 function ptCloud = helperProcessPointCloud(ptCloudIn, method)
