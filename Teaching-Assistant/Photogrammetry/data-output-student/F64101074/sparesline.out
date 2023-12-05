@@ -1,0 +1,70 @@
+        **** no. of ground check points =    71 ****
+ ..............................................................................
+
+photo no. =      4095
+
+         PHOTO SYSTEM                             GROUND SYSTEM
+ pts no. xxxx.xxx yyyy.yyy  weight    xxxxxx.xxx yyyyyy.yyy zzzzzz.zzz weight
+          [mm.]    [mm.]  [1/mm.**2]      [m.]       [m.]       [m.]   [1/m.**2]
+  409507   43.021   22.443  10000.    155320.3002553168.000       .894   400.
+  940019   -8.220   16.919  10000.    154932.1002552954.000      2.804   400.
+  940022  -73.725   11.152  10000.    154433.5002552692.000      3.015   400.
+    5591  111.779   27.004  10000.    155848.9002553431.000      6.424   400.
+
+There are   4 points used in the space resection of a single photo.
+
+    X0 =  154947.000   Y0 = 2552766.000   Z0 =  1350.000 [units: meters]
+    Focal length =   153.797 mm.
+    Initial values:
+        omega =       .0000 radians.
+        phie  =       .0000 radians.
+        kappa =     -1.0000 radians.
+
+    The dimension of normal matrix =    171
+
+
+iteration  dxpc<m.>   dypc<m.>   dzpc<m.>  dphie<cc.>  domega<cc.>  dkapa<cc.>
+
+    1       297.534   -465.766   1053.352     92897.4     176165.6    639546.9
+    2      -459.905    793.501  -1750.550    -98632.3    -165535.9    462838.7
+    3       208.328   -174.513    378.797     46038.4      89905.5   -106594.8
+    4       123.428   -145.675    208.134    -11490.4     -32305.4    -85380.1
+    5       -53.300     50.172     79.224    -26488.3     -58587.7    -19496.0
+    6       -15.461     24.646      4.600     -5027.9     -10139.7     -2288.4
+    7         -.239       .508      -.259      -108.8       -211.3       -46.0
+    8          .000       .000       .000         -.1          -.2          .0
+
+
+       pno   mx<mm.>  vmx<mm.>   my<mm.>  vmy<mm.>        X<m.>  VX<m.>        Y<m.>  VY<m.>        Z<m.>  VZ<m.>
+
+    409507   43.0213     .0001   22.4431    -.0020   155320.300   -.003  2553168.000    .005         .894    .001
+    940019   -8.2204    -.0006   16.9189     .0073   154932.100    .010  2552954.000   -.019        2.804   -.002
+    940022  -73.7253     .0003   11.1524    -.0039   154433.500   -.005  2552692.000    .010        3.015    .001
+      5591  111.7792     .0001   27.0040    -.0013   155848.900   -.002  2553431.000    .003        6.424    .000
+
+
+  sigma naught =             .707268 [ unitless ]
+
+
+  parameter              value      Std. Dev.
+
+     GXPC      155047.386   m.     8.321  m.
+     GYPC     2552848.873   m.    16.120  m.
+     GZPC        1323.299   m.     2.025  m.
+     phie          -.2812 gon.    4019.9 cc.
+    omega          -.0709 gon.    7767.4 cc.
+    kappa         25.1961 gon.      42.3 cc.
+
+      root mean square errors of ground points :
+        R.M.S. --- XYZ =      .013 meters
+        R.M.S. --- XY  =      .013 meters
+        R.M.S. --- Z   =      .001 meters
+
+      root mean square errors of photo points :
+        R.M.S. --- xy  =  .004 mm.
+        R.M.S. --- x   =  .000 mm.
+        R.M.S. --- y   =  .004 mm.
+
+
+      There is(are)    1 photo(s) to compute the space resection.
+        **** END the Space Resection of a single photo ****
