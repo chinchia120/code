@@ -138,8 +138,10 @@ start_ins_row = 1;
 firstFrame = true;
 currScan = 0;
 t_INS = t_INS_start;
+stratFrame = 17211;
+endFrame = 17381;
 
-for n = 14800: skipFrames: 15100
+for n = stratFrame: skipFrames: endFrame
     t_lidar = PCAP_UTC_TO_GPS_TIME(seconds(veloReader.Timestamps(n))*1000000, LiDAR_CFG);
 
     % Check an existing time of current LiDAR
@@ -227,78 +229,6 @@ absPoses = vSet.Views.AbsolutePose;
 mapGridSize = 0.2;
 ptCloudMap = pcalign(ptClouds, absPoses, mapGridSize);
 
-output_pcd(ptCloudMap, skipFrames);
-
-%% ========== Function ========== %%
-function output_pcd(ptCloudMap, skipFrames)
-    % Assuming ptCloud is your point cloud object and 'intensity' is a vector of intensity values
-    minI = min(double(ptCloudMap.Intensity));
-    maxI = max(double(ptCloudMap.Intensity));
-    
-    % Normalize intensity to 0-1
-    normI = (double(ptCloudMap.Intensity)-minI) / (maxI-minI);
-    
-    % Map intensity to an RGB color (here we use a grayscale colormap, but others can be used)
-    colorMap = uint8(255*repmat(normI, 1, 3));
-    
-    % Assign color to point cloud
-    ptCloudMap.Color = colorMap;
-    
-    % Write to PLY file
-    pcwrite(ptCloudMap, sprintf('vlp16_GM_14800_15100_skipframe_%02d.pcd', skipFrames));
-end
-
-function ptCloud = helperProcessPointCloud(ptCloudIn, method)
-    % helperProcessPointCloud Process pointCloud to remove ground and ego vehicle
-    arguments
-        ptCloudIn (1,1) pointCloud
-        method string {mustBeMember(method, ["planefit","rangefloodfill"])} = "rangefloodfill"
-    end  
-    isOrganized = ~ismatrix(ptCloudIn.Location);
-    
-    if (method == "rangefloodfill" && isOrganized) 
-        % Segment ground using floodfill on range image
-        groundFixedIdx = segmentGroundFromLidarData(ptCloudIn, "ElevationAngleDelta", 11);
-    else
-        % Segment ground as the dominant plane with reference normal vector pointing in positive z-direction
-        maxDistance = 0.4;
-        maxAngularDistance = 5;
-        referenceVector = [0, 0, 1];
-    
-        [~, groundFixedIdx] = pcfitplane(ptCloudIn, maxDistance, referenceVector, maxAngularDistance);
-    end
-    
-    if isOrganized
-        groundFixed = false(size(ptCloudIn.Location, 1), size(ptCloudIn.Location, 2));
-    else
-        groundFixed = false(ptCloudIn.Count, 1);
-    end
-    groundFixed(groundFixedIdx) = true;
-    
-    % Segment ego vehicle as points within a given radius of sensor
-    sensorLocation = [0, 0, 0];
-    radius = 4;
-    egoFixedIdx = findNeighborsInRadius(ptCloudIn, sensorLocation, radius);
-    
-    if isOrganized
-        egoFixed = false(size(ptCloudIn.Location, 1),size(ptCloudIn.Location, 2));
-    else
-        egoFixed = false(ptCloudIn.Count, 1);
-    end
-    egoFixed(egoFixedIdx) = true;
-    
-    % Retain subset of point cloud without ground and ego vehicle
-    if isOrganized
-        indices = ~groundFixed & ~egoFixed;
-    else
-        indices = find(~groundFixed & ~egoFixed);
-    end
-    ptCloud = select(ptCloudIn, indices);
-
-end
-
-function helperMakeFigurePublishFriendly(hFig)
-    if ~isempty(hFig) && isvalid(hFig)
-        hFig.HandleVisibility = 'callback';
-    end
-end
+FileName_output = sprintf('vlp16_DG_%05d_%05d_.pcd', stratFrame, endFrame);
+file_output = FileName_output;
+output_pcd(ptCloudMap, file_output);
