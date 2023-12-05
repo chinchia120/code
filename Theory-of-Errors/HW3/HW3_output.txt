@@ -1,0 +1,24 @@
+% ----- Mixed Model - 1 ----- %
+HC_hat = 117.9999 (m), sigma_HC = 0.0005 (m)
+HD_hat = 124.0003 (m), sigma_HD = 0.0009 (m)
+HE_hat = 111.9991 (m), sigma_HE = 0.0005 (m)
+a_hat = 1.00046, sigma_a = 0.000047
+
+% ----- GMM Model - 1 ----- %
+HC_hat = 117.9975 (m), sigma_HC = 0.0021 (m)
+HD_hat = 123.9932 (m), sigma_HD = 0.0024 (m)
+HE_hat = 111.9968 (m), sigma_HE = 0.0021 (m)
+
+HC_hat_update = 74.7%
+HD_hat_update = 62.4%
+HE_hat_update = 74.7%
+
+% ----- Mixed Model - 2 ----- %
+HC_hat = 117.9996 (m), sigma_HC = 0.0027 (m)
+HD_hat = 123.9995 (m), sigma_HD = 0.0000 (m)
+HE_hat = 111.9989 (m), sigma_HE = 0.0027 (m)
+
+% ----- GMM Model - 2 ----- %
+HC_hat = 117.9996 (m), sigma_HC = 0.0027 (m)
+HD_hat = 123.9995 (m), sigma_HD = 0.0000 (m)
+HE_hat = 111.9989 (m), sigma_HE = 0.0027 (m)
