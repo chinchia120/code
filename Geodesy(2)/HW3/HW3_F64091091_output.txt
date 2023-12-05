@@ -1,0 +1,28 @@
+%% ---------- Q1 ---------- %%
+Dynamic Height = -1.01976 (m)
+Orthometric Height = -1.02707 (m)
+Normal Height = -1.00354 (m)
+Ellipsoidal Height = 8.97293 (m)
+
+%% ---------- Q7 ---------- %%
+Dij = 999.3908 (m)
+M = 6398054.6119 (m)
+N = 6399080.5802 (m)
+R = 6378137.0000 (m)
+hij = 34.8854 (m)
+
+%% ---------- Q9 ---------- %%
+dn = -0.1000000000 (m)
+
+% --- Correction of Refraction Errors --- %
+RE = -6.0501e-07 (m)
+dn_refraction = -0.1000006050 (m)
+
+% --- Correction of Earth's Curvature --- %
+db = 7.1025e-05 (m)
+df = 7.0554e-05 (m)
+dn_curvature = -0.1000004711 (m)
+
+% --- Correction of Collimation Errors --- %
+dn_collimation = -0.1001454440 (m)
+
