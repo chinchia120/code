@@ -1,0 +1,124 @@
+COUNTYNAME,Year,season,NDVI,T.NT,Rainfall
+New Taipei City,2008,1,0.610477,2,138
+New Taipei City,2008,1,0.760074,2,26
+New Taipei City,2008,1,0.337792,2,30
+New Taipei City,2008,1,0.795831,2,59
+New Taipei City,2008,1,0.612427,2,80
+New Taipei City,2008,1,0.444074,2,14
+New Taipei City,2008,1,0.558467,2,71
+New Taipei City,2008,1,0.635839,2,145
+New Taipei City,2008,1,0.326029,2,141
+New Taipei City,2008,1,0.795953,2,22
+New Taipei City,2008,1,0.783727,2,78
+New Taipei City,2008,1,0.656944,2,50
+New Taipei City,2008,1,0.787035,2,97
+New Taipei City,2008,1,0.366199,2,92
+New Taipei City,2008,1,0.656718,2,47
+New Taipei City,2008,1,0.741576,2,3
+New Taipei City,2008,1,0.552938,2,142
+New Taipei City,2008,1,0.73654,2,48
+New Taipei City,2008,1,0.803995,2,10
+New Taipei City,2008,1,0.695185,2,37
+New Taipei City,2008,1,0.686475,2,17
+New Taipei City,2008,1,0.743226,2,115
+New Taipei City,2008,1,0.391315,2,136
+New Taipei City,2008,1,0.732338,2,24
+New Taipei City,2008,1,0.770504,2,8
+New Taipei City,2008,1,0.524453,2,38
+New Taipei City,2008,1,0.834977,2,135
+New Taipei City,2008,1,0.293127,2,56
+New Taipei City,2008,1,0.569445,2,125
+Taipei City,2008,1,0.685396,1,39
+Taipei City,2008,1,0.295776,1,74
+Taipei City,2008,1,0.387474,1,65
+Taipei City,2008,1,0.404049,1,115
+Taipei City,2008,1,0.36448,1,88
+Taipei City,2008,1,0.644349,1,107
+Taipei City,2008,1,0.611986,1,100
+Taipei City,2008,1,0.690572,1,105
+Taipei City,2008,1,0.337682,1,56
+Taipei City,2008,1,0.500123,1,108
+Taipei City,2008,1,0.622501,1,54
+Taipei City,2008,1,0.396196,1,62
+New Taipei City,2008,2,0.615484,2,67
+New Taipei City,2008,2,0.776051,2,58
+New Taipei City,2008,2,0.301488,2,120
+New Taipei City,2008,2,0.805963,2,11
+New Taipei City,2008,2,0.615108,2,83
+New Taipei City,2008,2,0.42353,2,87
+New Taipei City,2008,2,0.582093,2,2
+New Taipei City,2008,2,0.849023,2,93
+New Taipei City,2008,2,0.312332,2,77
+New Taipei City,2008,2,0.785259,2,39
+New Taipei City,2008,2,0.829287,2,108
+New Taipei City,2008,2,0.74358,2,96
+New Taipei City,2008,2,0.85127,2,43
+New Taipei City,2008,2,0.341859,2,124
+New Taipei City,2008,2,0.636811,2,110
+New Taipei City,2008,2,0.776753,2,128
+New Taipei City,2008,2,0.557445,2,76
+New Taipei City,2008,2,0.859917,2,29
+New Taipei City,2008,2,0.80134,2,143
+New Taipei City,2008,2,0.643042,2,131
+New Taipei City,2008,2,0.775781,2,144
+New Taipei City,2008,2,0.751928,2,73
+New Taipei City,2008,2,0.369435,2,51
+New Taipei City,2008,2,0.794493,2,116
+New Taipei City,2008,2,0.777278,2,89
+New Taipei City,2008,2,0.535069,2,123
+New Taipei City,2008,2,0.861005,2,147
+New Taipei City,2008,2,0.293463,2,86
+New Taipei City,2008,2,0.554062,2,94
+Taipei City,2008,2,0.670536,1,36
+Taipei City,2008,2,0.31318,1,43
+Taipei City,2008,2,0.366902,1,50
+Taipei City,2008,2,0.399528,1,30
+Taipei City,2008,2,0.312828,1,82
+Taipei City,2008,2,0.622777,1,51
+Taipei City,2008,2,0.650079,1,73
+Taipei City,2008,2,0.687098,1,67
+Taipei City,2008,2,0.29732,1,99
+Taipei City,2008,2,0.497472,1,38
+Taipei City,2008,2,0.663753,1,32
+Taipei City,2008,2,0.340274,1,81
+New Taipei City,2008,3,0.65468,2,9
+New Taipei City,2008,3,0.748314,2,107
+New Taipei City,2008,3,0.256731,2,127
+New Taipei City,2008,3,0.827398,2,122
+New Taipei City,2008,3,0.649721,2,137
+New Taipei City,2008,3,0.477788,2,63
+New Taipei City,2008,3,0.601233,2,146
+New Taipei City,2008,3,0.808764,2,60
+New Taipei City,2008,3,0.26821,2,42
+New Taipei City,2008,3,0.730187,2,81
+New Taipei City,2008,3,0.868483,2,90
+New Taipei City,2008,3,0.752566,2,111
+New Taipei City,2008,3,0.823389,2,74
+New Taipei City,2008,3,0.312908,2,62
+New Taipei City,2008,3,0.661709,2,66
+New Taipei City,2008,3,0.556724,2,113
+New Taipei City,2008,3,0.572953,2,45
+New Taipei City,2008,3,0.831117,2,91
+New Taipei City,2008,3,0.799177,2,65
+New Taipei City,2008,3,0.692533,2,82
+New Taipei City,2008,3,0.801857,2,99
+New Taipei City,2008,3,0.771691,2,23
+New Taipei City,2008,3,0.370203,2,118
+New Taipei City,2008,3,0.792794,2,54
+New Taipei City,2008,3,0.643412,2,35
+New Taipei City,2008,3,0.522865,2,101
+New Taipei City,2008,3,0.797731,2,69
+New Taipei City,2008,3,0.282842,2,52
+New Taipei City,2008,3,0.539827,2,72
+Taipei City,2008,3,0.612279,1,55
+Taipei City,2008,3,0.267961,1,118
+Taipei City,2008,3,0.396431,1,79
+Taipei City,2008,3,0.398716,1,53
+Taipei City,2008,3,0.309565,1,85
+Taipei City,2008,3,0.646586,1,97
+Taipei City,2008,3,0.684444,1,113
+Taipei City,2008,3,0.64886,1,63
+Taipei City,2008,3,0.311695,1,66
+Taipei City,2008,3,0.538139,1,33
+Taipei City,2008,3,0.687274,1,77
+Taipei City,2008,3,0.307981,1,119
