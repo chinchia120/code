@@ -5,7 +5,7 @@ addpath(genpath(pwd));
 %% ========== Load LiDAR Data - VLP16 ========== %%
 % ===== Select LiDAR File ===== %
 lidarFile = '2023-06-09-15-51-42_Velodyne-VLP-16-Data.pcap';
-lidarPath = 'C:\Users\user\Documents\NCKU-Data\competition\SG\data\';
+lidarPath = 'D:\For_thesis_student\Chin-Chia\Data\LiDAR\';
 %[lidarFile, lidarPath, ~] = uigetfile('*.pcap', 'Please select your LiDAR file');
 if lidarFile == 0
     return;
@@ -68,40 +68,41 @@ C_bl = bsRotm.matrix;
 initPOS = [23.0028474266, 120.214659453];
 initPOS4WGS84 = [initPOS(1), initPOS(2), 38.070];
 FileNameGT = 'REF_1.txt';
-PathNameGT = 'C:\Users\user\Documents\NCKU-Data\competition\SG\data\';
+PathNameGT = 'D:\For_thesis_student\Chin-Chia\Data\POS[IE]\';
 %[FileNameGT, PathNameGT, ~] = uigetfile('*.txt', 'Please select your reference file (IE)');
 f_INS = load([PathNameGT, FileNameGT]);
 t_INS_start = f_INS(1, 1);
 LLF_NED_INS = wgs2llf(f_INS, initPOS4WGS84);
 
+initPOS4TWD97 = wgs84_to_twd97(initPOS);
 disp(['Local Frame = ', sprintf('%7.4f, %7.4f', LLF_NED_INS(80000, 2), LLF_NED_INS(80000, 3))]);
 for i = 1:size(LLF_NED_INS, 1)
     if (LLF_NED_INS(i, 10) < 0)
         LLF_NED_INS(i, 10) = LLF_NED_INS(i, 10) + 360;
     end
-    LLF_NED_INS(i, 2) = LLF_NED_INS(i, 2) + 2544814.048;
-    LLF_NED_INS(i, 3) = LLF_NED_INS(i, 3) + 169492.873;
+    LLF_NED_INS(i, 2) = LLF_NED_INS(i, 2) + initPOS4TWD97(2);
+    LLF_NED_INS(i, 3) = LLF_NED_INS(i, 3) + initPOS4TWD97(1);
 end
 disp(['TWD97 Frame = ', sprintf('%10.4f, %11.4f', LLF_NED_INS(80000, 2), LLF_NED_INS(80000, 3))]);
 
 clearvars i f_ref;
 %% ========== Read the First Point Cloud and Display It at the MATLAB ========== %%
 ptCloud = readFrame(veloReader, 1);
-disp(ptCloud)
+%disp(ptCloud)
 
 
 %% ========== Visualize the Point Cloud ========== %% 
 % ===== Create a Streaming Point Cloud Display Object ===== %
-xlimits = [-45, 45];
-ylimits = [-45, 45];
+xlimits = [-15, 15];
+ylimits = [-15, 15];
 zlimits = [-10, 20];
 lidarPlayer = pcplayer(xlimits, ylimits, zlimits);
 
 % ===== Customize Player Axes Labels ===== %
-xlabel(lidarPlayer.Axes, 'X (m)')
-ylabel(lidarPlayer.Axes, 'Y (m)')
-zlabel(lidarPlayer.Axes, 'Z (m)')
-title(lidarPlayer.Axes, 'Lidar Sensor Data')
+xlabel(lidarPlayer.Axes, 'X (m)');
+ylabel(lidarPlayer.Axes, 'Y (m)');
+zlabel(lidarPlayer.Axes, 'Z (m)');
+title(lidarPlayer.Axes, 'Lidar Sensor Data');
 
 % ===== Visualize Point Cloud ===== %
 for n = 1: 2
@@ -133,16 +134,21 @@ relTform = rigidtform3d;  % Relative transformation between successive scans
 viewId = 1;
 skipFrames = 1;
 numFrames = veloReader.NumberOfFrames;
-displayRate = 10; % Update display every 100 frames
+displayRate = 100; % Update display every 100 frames
 start_ins_row = 1;
 firstFrame = true;
 currScan = 0;
 t_INS = t_INS_start;
-stratFrame = 17211;
-endFrame = 17381;
+stratFrame = 6290;
+endFrame = 17380;
 
 for n = stratFrame: skipFrames: endFrame
+    if ~((n >= 6290 && n <= 9740) || (n >= 12760 && n <= 14020) || (n >= 14740 && n <= 15830) || (n >= 17210 && n <= 17380))
+        continue;
+    end
+
     t_lidar = PCAP_UTC_TO_GPS_TIME(seconds(veloReader.Timestamps(n))*1000000, LiDAR_CFG);
+    title(lidarPlayer.Axes, sprintf('Lidar Sensor Data at Frame NO.%5d', n));
 
     % Check an existing time of current LiDAR
     if (t_lidar < t_INS_start)
@@ -172,7 +178,7 @@ for n = stratFrame: skipFrames: endFrame
     ptCloudOrig = readFrame(veloReader, n);
 
     % Process point cloud
-    ptCloud = helperProcessPointCloud(ptCloudOrig);
+    ptCloud = helperProcessPointCloud_SetRange(ptCloudOrig);
 
     % Visualize point cloud
     view(lidarPlayer, ptCloud);
@@ -217,7 +223,7 @@ for n = stratFrame: skipFrames: endFrame
     ptCloudPrev = ptCloud;
     initTform   = relTform;
     
-    if n > 1 && mod(n, displayRate) == 1
+    if n > 1 && mod(n, displayRate) == 0
         plot(vSet, "Parent", hAxBefore);
         drawnow update
     end
