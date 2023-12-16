@@ -4,7 +4,7 @@ function output = scatter_diff_brd(X_, Y_, title_, figurename_)
     subplot(3, 1, 1);
     scatter(X_, Y_(:, 1), '.', 'b');
 
-    title([title_, ' Position Difference of Radial of brd Data'], 'FontSize', 16);
+    title([title_, ' Radial of brd Data'], 'FontSize', 16);
     xlabel('Time', 'FontSize', 14);
     ylabel('Radial (m)', 'FontSize', 14);
     
@@ -12,7 +12,7 @@ function output = scatter_diff_brd(X_, Y_, title_, figurename_)
     subplot(3, 1, 2);
     scatter(X_, Y_(:, 2), '.', 'r');
 
-    title([title_, ' Position Difference of Along of brd Data'], 'FontSize', 16);
+    title([title_, ' Along of brd Data'], 'FontSize', 16);
     xlabel('Time', 'FontSize', 14);
     ylabel('Along (m)', 'FontSize', 14);
     
@@ -20,7 +20,7 @@ function output = scatter_diff_brd(X_, Y_, title_, figurename_)
     subplot(3, 1, 3);
     scatter(X_, Y_(:, 3), '.', 'k');
 
-    title([title_, ' Position Difference of Cross of brd Data'], 'FontSize', 16);
+    title([title_, ' Cross of brd Data'], 'FontSize', 16);
     xlabel('Time', 'FontSize', 14);
     ylabel('Cross (m)', 'FontSize', 14);
     
