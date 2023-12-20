@@ -1,18 +1,18 @@
-%% =============== Function of helperProcessPointCloud =============== %%
-function ptCloud = helperProcessPointCloud(ptCloudIn, method)
+%% =============== Function of helperProcessPointCloud_SetRange =============== %%
+function ptCloud = helperProcessPointCloud_SetRange(ptCloudIn, method)
+    % Initial Setup
     arguments
         ptCloudIn (1,1) pointCloud
-        method string {mustBeMember(method, ["planefit","rangefloodfill"])} = "rangefloodfill"
+        method string {mustBeMember(method, ["planefit", "rangefloodfill"])} = "rangefloodfill"
     end
     
     isOrganized = ~ismatrix(ptCloudIn.Location);
     
-    if (method=="rangefloodfill" && isOrganized) 
-        % Segment ground using floodfill on range image
+    if (method == "rangefloodfill" && isOrganized) 
+    % Segment Ground Using Floodfill on Range Image
         groundFixedIdx = segmentGroundFromLidarData(ptCloudIn, "ElevationAngleDelta", 11);
     else
-        % Segment ground as the dominant plane with reference normal
-        % vector pointing in positive z-direction
+    % Segment Ground as the Dominant Plane with Reference Normal Vector Pointing in Positive Z-Direction
         maxDistance = 0.4;
         maxAngularDistance = 5;
         referenceVector = [0, 0, 1];
@@ -27,7 +27,7 @@ function ptCloud = helperProcessPointCloud(ptCloudIn, method)
     end
     groundFixed(groundFixedIdx) = true;
     
-    % Segment ego vehicle as points within a given radius of sensor
+    % Segment Ego Vehicle as Points within a Given Radius of Sensor
     sensorLocation = [0, 0, 0];
     radius = 4;
     egoFixedIdx = findNeighborsInRadius(ptCloudIn, sensorLocation, radius);
@@ -39,12 +39,18 @@ function ptCloud = helperProcessPointCloud(ptCloudIn, method)
     end
     egoFixed(egoFixedIdx) = true;
     
-    % Retain subset of point cloud without ground and ego vehicle
+    % Retain Subset of Point Cloud without Ground and Ego Vehicle
     if isOrganized
         indices = ~groundFixed & ~egoFixed;
     else
         indices = find(~groundFixed & ~egoFixed);
     end
     
-    ptCloud = pcdenoise(select(ptCloudIn, indices));
+    ptCloud_rm = pcdenoise(select(ptCloudIn, indices)); 
+
+    % Select Range of Point Cloud
+    roi = [-15, 15, -15, 15, min(ptCloud_rm.Location(:, 3)), max(ptCloud_rm.Location(:, 3))];
+    indices = findPointsInROI(ptCloud_rm, roi);
+    
+    ptCloud = select(ptCloud_rm, indices);
 end

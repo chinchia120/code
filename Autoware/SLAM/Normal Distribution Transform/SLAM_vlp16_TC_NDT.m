@@ -5,9 +5,8 @@ close all;
 
 %% =============== Select Input pcap File =============== %%
 FileName_pcap = '2023-06-09-15-51-42_Velodyne-VLP-16-Data.pcap';
-%PathName_pcap = 'D:\For_thesis_student\Chin-Chia\Data\LiDAR\';
-PathName_pcap = 'C:\Users\user\Documents\NCKU-Data\competition\SG\data\';
-[FileName_pcap, PathName_pcap, ~] = uigetfile('*.pcap', 'Please Select LiDAR File(.pcap)');
+PathName_pcap = 'D:\For_thesis_student\Chin-Chia\Data\LiDAR\';
+%[FileName_pcap, PathName_pcap, ~] = uigetfile('*.pcap', 'Please Select LiDAR File(.pcap)');
 if isequal(FileName_pcap, 0)
     disp('User selected Cancel');
     return;
@@ -48,9 +47,8 @@ end
 
 %% =============== Select Input Integrated Navigation File =============== %%
 FileName_IE = 'REF_1.txt';
-%PathName_IE = 'D:\For_thesis_student\Chin-Chia\Data\POS[IE]\';
-PathName_IE = 'C:\Users\user\Documents\NCKU-Data\competition\SG\data\';
-[FileName_IE, PathName_IE, ~] = uigetfile('*.txt', 'Please Select Reference File(.txt)');
+PathName_IE = 'D:\For_thesis_student\Chin-Chia\Data\POS[IE]\';
+%[FileName_IE, PathName_IE, ~] = uigetfile('*.txt', 'Please Select Reference File(.txt)');
 if isequal(FileName_IE, 0)
     disp('User selected Cancel');
     return;
@@ -61,6 +59,7 @@ end
 %% =============== Load Integrated Navigation Data =============== %%
 initPOS = [23.0028474266, 120.214659453];
 initPOS4WGS84 = [initPOS(1), initPOS(2), 38.070];
+initPOS4TWD97 = wgs84_to_twd97(initPOS);
 
 File_INS = load([PathName_IE, FileName_IE]);
 t_INS_start = File_INS(1, 1);
@@ -70,8 +69,8 @@ for i = 1:size(LLF_NED_INS, 1)
     if (LLF_NED_INS(i, 10) < 0)
         LLF_NED_INS(i, 10) = LLF_NED_INS(i, 10) + 360;
     end
-    LLF_NED_INS(i, 2) = LLF_NED_INS(i, 2) + 2544814.048;
-    LLF_NED_INS(i, 3) = LLF_NED_INS(i, 3) + 169492.873;
+    LLF_NED_INS(i, 2) = LLF_NED_INS(i, 2) + initPOS4TWD97(2);
+    LLF_NED_INS(i, 3) = LLF_NED_INS(i, 3) + initPOS4TWD97(1);
 end
 
 %% =============== Initial LiDAR Mounting Parameters =============== %%
@@ -94,9 +93,8 @@ bsRotm = eul2rotmENU(bs);
 C_bl = bsRotm.matrix;
 
 %% =============== Select Input pcd File =============== %%
-FileName_initpcd = 'vlp16_DG_14850_15170.pcd';
+%FileName_initpcd = 'vlp16_DG_14850_15170.pcd';
 %PathName_initpcd = 'D:\For_thesis_student\Chin-Chia\Normal Distribution Transform\input-pcd\';
-PathName_initpcd = 'C:\Users\user\Documents\code_git\Autoware\SLAM\Normal Distribution Transform\input-pcd\';
 [FileName_initpcd, PathName_initpcd, ~] = uigetfile('*.pcd', 'Please Select Initial Map File(.pcd)');
 if isequal(FileName_initpcd, 0)
     disp('User selected Cancel');
@@ -110,9 +108,8 @@ ptCloud_initpcd = pcread(fullfile(PathName_initpcd, FileName_initpcd));
 %figure;pcshow(ptCloud_initpcd);
 
 %% =============== Select Output pcd Folder =============== %%
-%PathName_output = 'D:\For_thesis_student\Chin-Chia\Normal Distribution Transform\output-pcd';
-PathName_output = 'C:\Users\user\Documents\code_git\Autoware\SLAM\Normal Distribution Transform\output-pcd';
-PathName_output = uigetdir(addpath(genpath(pwd)), 'Please Select Output Folder');
+PathName_output = 'D:\For_thesis_student\Chin-Chia\Normal Distribution Transform\output-pcd';
+%PathName_output = uigetdir(addpath(genpath(pwd)), 'Please Select Output Folder');
 if isequal(PathName_output, 0)
     disp('User selected Cancel');
     return;
@@ -121,8 +118,8 @@ else
 end
 
 %% =============== Mapping Process =============== %%
-xlimits = [-50, 50];
-ylimits = [-50, 50];
+xlimits = [-15, 15];
+ylimits = [-15, 15];
 zlimits = [-10, 20];
 lidarPlayer = pcplayer(xlimits, ylimits, zlimits);
 
@@ -142,7 +139,7 @@ absTform = rigidtform3d;  % Absolute transformation to reference frame
 relTform = rigidtform3d;  % Relative transformation between successive scans
 
 viewId = 1;
-stratFrame = 14021;
+stratFrame = 09740;
 endFrame = 18910;
 skipFrame = 1;
 numFrame = veloReader.NumberOfFrames;
@@ -153,6 +150,15 @@ t_INS = t_INS_start;
 currScan = 0;
 
 for n = stratFrame: skipFrame: endFrame
+    % ===== Select Process Period ===== %
+    if ~((n >= 9740 && n <= 12560) || (n >= 14020 && n <= 14740) || (n >= 15830 && n <= 17210) || (n >= 17380 && n <= 17900) || (n >= 18030 && n <= 18910))
+        continue;
+    end
+    
+%     if ~((n >= 15830 && n <= 17210))
+%         continue;
+%     end
+
     % ===== Align LiDAR Time and INS Time ===== %
     t_lidar = PCAP_UTC_TO_GPS_TIME(seconds(veloReader.Timestamps(n))*1000000, LiDAR_CFG);
     title(lidarPlayer.Axes, sprintf('Lidar Sensor Data at Frame NO.%5d', n));
@@ -177,10 +183,12 @@ for n = stratFrame: skipFrame: endFrame
     
     % ===== Initial Point Cloud ===== %
     ptCloudObj = readFrame(veloReader, n);
-    view(lidarPlayer, ptCloudObj.Location, ptCloudObj.Intensity);
 
     % ===== Process Point Cloud ===== %
-    ptCloud = helperProcessPointCloud(ptCloudObj);
+    ptCloud = helperProcessPointCloud_SetRange(ptCloudObj);
+
+    % ===== Visualize the Point Cloud ===== %
+    view(lidarPlayer, ptCloud.Location, ptCloud.Intensity);
     
     % ===== Setup Initial Value ===== %
     if firstFrame
@@ -202,12 +210,7 @@ for n = stratFrame: skipFrame: endFrame
     initTform = rigidtform3d(R_now_prev, delta_r);
 
     % ===== Compute Rigid Transformation that Registers Current Point Cloud with Previous Point Cloud ===== %
-%     relTform = initTform;
-    if (n > 14021 && n < 14741) || (n > 15830 && n < 17211) || (n > 17381 && n < 18910)
-        relTform = pcregisterndt(ptCloud, ptCloud_initpcd, 50);
-    else
-        continue;
-    end
+    relTform = pcregisterndt(ptCloud, ptCloud_initpcd, 25);
 
     % ===== Update Absolute Transformation to Reference Frame (first point cloud) ===== %
     absTform = rigidtform3d(R_l2n_INS, r_ln_INS');
