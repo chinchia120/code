@@ -1,12 +1,13 @@
+%% =============== Function of helperProcessPointCloud =============== %%
 function ptCloud = helperProcessPointCloud(ptCloudIn, method)
-    % helperProcessPointCloud Process pointCloud to remove ground and ego vehicle
     arguments
         ptCloudIn (1,1) pointCloud
-        method string {mustBeMember(method, ["planefit","rangefloodfill"])} = "rangefloodfill"
-    end  
+        method string {mustBeMember(method, ["planefit", "rangefloodfill"])} = "rangefloodfill"
+    end
+    
     isOrganized = ~ismatrix(ptCloudIn.Location);
     
-    if (method == "rangefloodfill" && isOrganized) 
+    if (method=="rangefloodfill" && isOrganized) 
         % Segment ground using floodfill on range image
         groundFixedIdx = segmentGroundFromLidarData(ptCloudIn, "ElevationAngleDelta", 11);
     else
@@ -31,7 +32,7 @@ function ptCloud = helperProcessPointCloud(ptCloudIn, method)
     egoFixedIdx = findNeighborsInRadius(ptCloudIn, sensorLocation, radius);
     
     if isOrganized
-        egoFixed = false(size(ptCloudIn.Location, 1),size(ptCloudIn.Location, 2));
+        egoFixed = false(size(ptCloudIn.Location, 1), size(ptCloudIn.Location, 2));
     else
         egoFixed = false(ptCloudIn.Count, 1);
     end
@@ -43,6 +44,6 @@ function ptCloud = helperProcessPointCloud(ptCloudIn, method)
     else
         indices = find(~groundFixed & ~egoFixed);
     end
-    ptCloud = select(ptCloudIn, indices);
+    
+    ptCloud = pcdenoise(select(ptCloudIn, indices));
 end
-
